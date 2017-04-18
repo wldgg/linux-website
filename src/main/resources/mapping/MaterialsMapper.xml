@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.MaterialsDao">
+
+    <resultMap id="MaterialsBaseMap" type="com.cam.model.Materials">
+        <id column="materialsid" property="materialsid" jdbcType="INTEGER"/>
+        <result column="materialsname" property="materialsname" jdbcType="VARCHAR"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectMaterialsByPage"  resultMap="MaterialsBaseMap">
+        SELECT * FROM t_materials limit #{begin},20
+    </select>
+
+    <select id="selectMaterialsByName"  resultMap="MaterialsBaseMap">
+        SELECT * FROM t_materials where materialsname like concat(concat('%',#{name}),'%') limit 0,20
+    </select>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_materials
+    </select>
+
+    <insert id="addMaterials" parameterType="com.cam.model.Materials">
+        INSERT INTO t_materials(materialsname)
+        VALUES (#{materials.materialsname})
+    </insert>
+
+    <delete id="removeMaterials">
+        DELETE FROM t_materials WHERE materialsname=#{name}
+    </delete>
+
+</mapper>

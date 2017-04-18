@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.ShortAnswerDao">
+
+    <resultMap id="ShortAnswerMap" type="com.cam.model.ShortAnswer">
+        <id column="shortanswerid" property="shortanswerid" jdbcType="INTEGER"/>
+        <result column="shortanswerbody" property="shortanswerbody" jdbcType="VARCHAR"/>
+        <result column="shortansweranswer" property="shortansweranswer" jdbcType="VARCHAR"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addShortAnswer" parameterType="com.cam.model.ShortAnswer">
+        INSERT INTO t_shortanswer(shortanswerid,shortanswerbody,shortansweranswer)
+        VALUES (#{shortanswer.shortanswerid},#{shortanswer.shortanswerbody},#{shortanswer.shortansweranswer})
+    </insert>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_shortanswer
+    </select>
+
+    <select id="getInString" resultMap="ShortAnswerMap">
+        SELECT * FROM t_shortanswer WHERE shortanswerid IN
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

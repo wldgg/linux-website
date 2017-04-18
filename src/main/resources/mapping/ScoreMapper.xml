@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.ScoreDao">
+
+    <resultMap id="ScoreBaseMap" type="com.cam.model.Score">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="evaluateid" property="evaluateid" jdbcType="INTEGER"/>
+        <result column="evaluatename" property="evaluatename" jdbcType="VARCHAR"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addScore" parameterType="com.cam.model.Score">
+        INSERT INTO t_score(evaluateid,evaluatename,userid,username,score)
+        VALUES (#{score.evaluateid},#{score.evaluatename},#{score.userid},#{score.username},#{score.score})
+    </insert>
+
+</mapper>

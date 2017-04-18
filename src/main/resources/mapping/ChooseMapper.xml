@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.ChooseDao">
+
+    <resultMap id="ChooseBaseMap" type="com.cam.model.Choose">
+        <id column="chooseid" property="chooseid" jdbcType="INTEGER"/>
+        <result column="choosebody" property="choosebody" jdbcType="VARCHAR"/>
+        <result column="choosea" property="choosea" jdbcType="VARCHAR"/>
+        <result column="chooseb" property="chooseb" jdbcType="VARCHAR"/>
+        <result column="choosec" property="choosec" jdbcType="VARCHAR"/>
+        <result column="choosed" property="choosed" jdbcType="VARCHAR"/>
+        <result column="chooseanswer" property="chooseanswer" jdbcType="VARCHAR"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addChoose" parameterType="com.cam.model.Choose">
+        INSERT INTO t_choose(chooseid,choosebody,choosea,chooseb,choosec,choosed,chooseanswer)
+        VALUES (#{choose.chooseid},#{choose.choosebody},#{choose.choosea},#{choose.chooseb},#{choose.choosec},#{choose.choosed},#{choose.chooseanswer})
+    </insert>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_choose
+    </select>
+
+    <select id="getInString" resultMap="ChooseBaseMap">
+        SELECT * FROM t_choose WHERE chooseid IN
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

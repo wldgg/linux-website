@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.EvaluateDao">
+
+    <resultMap id="EvaluateBaseMap" type="com.cam.model.Evaluate">
+        <id column="evaluateid" property="evaluateid" jdbcType="INTEGER"/>
+        <result column="evaluatename" property="evaluatename" jdbcType="VARCHAR"/>
+        <result column="choosenum" property="choosenum" jdbcType="INTEGER"/>
+        <result column="chooselist" property="chooselist" jdbcType="VARCHAR"/>
+        <result column="vacantnum" property="vacantnum" jdbcType="INTEGER"/>
+        <result column="vacantlist" property="vacantlist" jdbcType="VARCHAR"/>
+        <result column="judgenum" property="judgenum" jdbcType="INTEGER"/>
+        <result column="judgelist" property="judgelist" jdbcType="VARCHAR"/>
+        <result column="shortanswernum" property="shortanswernum" jdbcType="INTEGER"/>
+        <result column="shortanswerlist" property="shortanswerlist" jdbcType="VARCHAR"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectEvaluateByPage"  resultMap="EvaluateBaseMap">
+        SELECT * FROM t_evaluate limit #{begin},20
+    </select>
+
+    <select id="selectEvaluateByName"  resultMap="EvaluateBaseMap">
+        SELECT * FROM t_evaluate where evaluatename like concat(concat('%',#{name}),'%') limit 0,20
+    </select>
+
+    <select id="selectOneEvaluateByName"  resultMap="EvaluateBaseMap">
+        SELECT * FROM t_evaluate where evaluatename=#{name}
+    </select>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_evaluate
+    </select>
+
+    <insert id="addEvaluate" parameterType="com.cam.model.Evaluate">
+        INSERT INTO t_evaluate(evaluatename,choosenum,chooselist,vacantnum,vacantlist,judgenum,judgelist,shortanswernum,shortanswerlist)
+        VALUES (#{evaluate.evaluatename},#{evaluate.choosenum},#{evaluate.chooselist},#{evaluate.vacantnum},#{evaluate.vacantlist},#{evaluate.judgenum},#{evaluate.judgelist}
+        ,#{evaluate.shortanswernum},#{evaluate.shortanswerlist})
+    </insert>
+
+    <delete id="removeEvaluate">
+        DELETE FROM t_evaluate WHERE evaluatename=#{name}
+    </delete>
+
+</mapper>

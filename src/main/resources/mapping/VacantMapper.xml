@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.VacantDao">
+
+    <resultMap id="VacantBaseMap" type="com.cam.model.Vacant">
+        <id column="vacantid" property="vacantid" jdbcType="INTEGER"/>
+        <result column="vacantbody" property="vacantbody" jdbcType="VARCHAR"/>
+        <result column="vacantanswer" property="vacantanswer" jdbcType="VARCHAR"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addVacant" parameterType="com.cam.model.Vacant">
+        INSERT INTO t_vacant(vacantid,vacantbody,vacantanswer)
+        VALUES (#{vacant.vacantid},#{vacant.vacantbody},#{vacant.vacantanswer})
+    </insert>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_vacant
+    </select>
+
+    <select id="getInString" resultMap="VacantBaseMap">
+        SELECT * FROM t_vacant WHERE vacantid IN
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

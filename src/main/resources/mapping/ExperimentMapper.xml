@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.ExperimentDao">
+
+    <resultMap id="ExperimentBaseMap" type="com.cam.model.Experiment">
+        <id column="experimentid" property="experimentid" jdbcType="INTEGER"/>
+        <result column="experimentname" property="experimentname" jdbcType="VARCHAR"/>
+        <result column="experimentbody" property="experimentbody" jdbcType="VARCHAR"/>
+        <result column="experimentfile" property="experimentfile" jdbcType="VARCHAR"/>
+        <result column="starttime" property="starttime" jdbcType="TIMESTAMP"/>
+        <result column="finishtime" property="finishtime" jdbcType="TIMESTAMP"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectExperimentByPage"  resultMap="ExperimentBaseMap">
+        SELECT * FROM t_experiment limit #{begin},20
+    </select>
+
+    <select id="selectExperimentByName"  resultMap="ExperimentBaseMap">
+        SELECT * FROM t_experiment where experimentname like concat(concat('%',#{name}),'%') limit 0,20
+    </select>
+
+    <select id="selectOneExperimentByName"  resultMap="ExperimentBaseMap">
+        SELECT * FROM t_experiment where experimentname=#{name}
+    </select>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_experiment
+    </select>
+
+    <insert id="addExperiment" parameterType="com.cam.model.Experiment">
+        INSERT INTO t_experiment(experimentname,experimentbody,experimentfile,starttime,finishtime)
+        VALUES (#{experiment.experimentname},#{experiment.experimentbody},#{experiment.experimentfile},#{experiment.starttime},#{experiment.finishtime})
+    </insert>
+
+    <insert id="updateExperiment" parameterType="com.cam.model.Experiment">
+        UPDATE t_experiment SET experimentname=#{experiment.experimentname},experimentbody=#{experiment.experimentbody},experimentfile=#{experiment.experimentfile},
+        starttime=#{experiment.starttime},finishtime=#{experiment.finishtime} WHERE experimentid=#{experiment.experimentid}
+    </insert>
+
+
+
+    <delete id="removeExperiment">
+        DELETE FROM t_experiment WHERE experimentname=#{name}
+    </delete>
+
+</mapper>
