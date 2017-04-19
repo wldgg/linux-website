@@ -13,6 +13,18 @@ import java.util.List;
 @Repository
 public interface UserDao {
 
+    List<User> selectUsersByPage(int begin);
+
+    List<User> selectUsersByName(String name);
+
+    List<User> selectUsersNotAdminByPage(int page);
+
+    List<User> selectUsersNotAdminByName(String name);
+
+    int getCounts();
+
+    int getNotAdminCounts();
+
     User selectUserById(@Param("userId") Integer userId);
 
     User selectUserByEmail(@Param("email") String email);
@@ -20,6 +32,8 @@ public interface UserDao {
     User selectUserByUsername(@Param("username") String username);
 
     boolean addUser(@Param("user") User user);
+
+    void updateUserRole(@Param("username") String username, @Param("role") Integer role);
 
     User selectUserByUsernameAndUserPwd(@Param("username") String username, @Param("userPwd") String userPwd);
 

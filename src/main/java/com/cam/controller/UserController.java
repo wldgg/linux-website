@@ -1,5 +1,6 @@
 package com.cam.controller;
 
+import com.cam.contant.Contant;
 import com.cam.model.User;
 import com.cam.model.UserRegister;
 import com.cam.service.UserService;
@@ -41,66 +42,51 @@ public class UserController {
 
     @RequestMapping("/import")
     public String userImport(HttpServletRequest request,@RequestParam MultipartFile file) throws Exception{
-        if(file.isEmpty()){
-            System.out.println("文件未上传!");
-        }
-        else{
-//                //得到上传的文件名
-//                String fileName = file.getOriginalFilename();
-//                //得到服务器项目发布运行所在地址
-//                String path1 = request.getSession().getServletContext().getRealPath("file")+ File.separator;
-//                //  此处未使用UUID来生成唯一标识,用日期做为标识
-//                String realfilename=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+ fileName;
-//                String path = path1+ realfilename;
-//                //查看文件上传路径,方便查找
-//                System.out.println(path);
-//                //把文件上传至path的路径
-//                File localFile = new File(path);
-//                file.transferTo(localFile);
-
-            List<User> erruser=new ArrayList<User>();
-            Workbook workbook=null;
-            String filename=file.getOriginalFilename();
-            String fileType = filename.substring(filename.lastIndexOf(".")+1);
-            if (fileType.equalsIgnoreCase("xlsx")) {
-                workbook=new XSSFWorkbook(file.getInputStream());
-            }else if(fileType.equalsIgnoreCase("xls")){
-                workbook = new HSSFWorkbook(file.getInputStream());
+        try {
+            if(file.isEmpty()){
+                System.out.println("文件未上传!");
             }
-            for (int sheetindex=0;sheetindex<workbook.getNumberOfSheets();sheetindex++){
-                Sheet sheet=workbook.getSheetAt(sheetindex);
-                if(sheet==null){
-                    continue;
+            else{
+                List<User> erruser=new ArrayList<User>();
+                Workbook workbook=null;
+                String filename=file.getOriginalFilename();
+                String fileType = filename.substring(filename.lastIndexOf(".")+1);
+                if (fileType.equalsIgnoreCase("xlsx")) {
+                    workbook=new XSSFWorkbook(file.getInputStream());
+                }else if(fileType.equalsIgnoreCase("xls")){
+                    workbook = new HSSFWorkbook(file.getInputStream());
                 }
-                for (int rowindex=0;rowindex<=sheet.getLastRowNum();rowindex++){
-                    Row row=sheet.getRow(rowindex);
-//                        for (int colindex=0;colindex<row.getPhysicalNumberOfCells();colindex++){
-//                            System.out.println(row.getCell(colindex));
-//                        }
-                    String username=row.getCell(0).toString().trim();
-//                        if(rowindex==1)username="xiaoming";
-                    String userPwd=row.getCell(1).toString().trim();
-                    String userEmail=row.getCell(2).toString().trim();
-                    User user=new User();
-                    user.setUsername(username);
-                    user.setUserPwd(userPwd);
-                    user.setUserEmail(userEmail);
-                    try {
-                        userService.addUser(user);
-                    }catch (Exception e){
-                        erruser.add(user);
+                for (int sheetindex=0;sheetindex<workbook.getNumberOfSheets();sheetindex++){
+                    Sheet sheet=workbook.getSheetAt(sheetindex);
+                    if(sheet==null){
+                        continue;
                     }
-
-                }
-                Iterator it=erruser.iterator();
-                while (it.hasNext()){
-                    log.info(it.next().toString());
-                    System.out.println(it.next().toString());
+                    for (int rowindex=0;rowindex<=sheet.getLastRowNum();rowindex++){
+                        Row row=sheet.getRow(rowindex);
+                        String username=row.getCell(0).toString().trim();
+                        String userPwd=row.getCell(1).toString().trim();
+                        String userEmail=row.getCell(2).toString().trim();
+                        User user=new User();
+                        user.setUsername(username);
+                        user.setUserPwd(userPwd);
+                        user.setUserEmail(userEmail);
+                        try {
+                            userService.addUser(user);
+                        }catch (Exception e){
+                            erruser.add(user);
+                        }
+                    }
+                    Iterator it=erruser.iterator();
+                    while (it.hasNext()){
+                        log.info(it.next().toString());
+                        System.out.println(it.next().toString());
+                    }
                 }
             }
-
+            return "/root/usermanage/importUser";
+        }catch (Exception e){
+            return "/error";
         }
-        return "/root/usermanage/importUser";
     }
 
     @RequestMapping("/user")
@@ -109,36 +95,70 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String userLogin(HttpServletRequest request,String username,String password){
-        boolean isRight=userService.checkUserAndPwd(username, password);
-        if(isRight){
-            request.getSession().setAttribute("username",username);
-            if(username.equals("root")){
-                return "/root/rootindex";
+    public String userLogin(HttpServletRequest request,String username,String password,
+                            Model model){
+        try {
+            User user=userService.checkUserAndPwd(username, password);
+            if(user!=null){
+                request.getSession().setAttribute("username",username);
+                request.getSession().setAttribute("roleid",""+user.getUserRole());
+                if(user.getUserRole()!=2){
+                    return showUser(request,model,1,null);
+                }
+                return "/toindex";
+            }else {
+                return "/loginfalse";
             }
-            return "/toindex";
-        }else {
-            return "/loginfalse";
+        }catch (Exception e){
+            return "/error";
+        }
+    }
+
+    @RequestMapping("/update")
+    public String updateUser(HttpServletRequest request,Model model,@RequestParam(required = false) String username,
+                             @RequestParam(required = false) Integer role){
+        try {
+            if(role!=null){
+                if (role==1){
+                    role=2;
+                } else if (role==2){
+                    role=1;
+                }
+            }
+            userService.updateUserRole(username,role);
+            return showUser(request,model,1,null);
+        }catch (Exception e){
+            return "/error";
         }
     }
 
     @RequestMapping("/quit")
     public String userQuit(HttpServletRequest request){
-        request.getSession().removeAttribute("username");
-        return "/toindex";
+        try {
+            request.getSession().removeAttribute("username");
+            return "/toindex";
+        }catch (Exception e){
+            return "/error";
+        }
     }
 
     @RequestMapping("register")
     public String userRegister(HttpServletRequest request, UserRegister userRegister){
-        User user=new User();
-        user.setUsername(userRegister.getUsername());
-        user.setUserPwd(userRegister.getUserPwd());
-        user.setUserEmail(userRegister.getUserEmail());
-        if(userService.addUser(user)){
-            request.getSession().setAttribute("username",userRegister.getUsername());
-            return "/toindex";
-        }else {
-            return "/registerfalse";
+        try {
+            User user=new User();
+            user.setUsername(userRegister.getUsername());
+            user.setUserPwd(userRegister.getUserPwd());
+            user.setUserEmail(userRegister.getUserEmail());
+            user.setUserRole(2);
+            if(userService.addUser(user)){
+                request.getSession().setAttribute("username",userRegister.getUsername());
+                request.getSession().setAttribute("roleid","2");
+                return "/toindex";
+            }else {
+                return "/registerfalse";
+            }
+        }catch (Exception e){
+            return "/error";
         }
     }
 
@@ -147,12 +167,40 @@ public class UserController {
         return "/register";
     }
 
-    @RequestMapping("/showUser")
-    public String showUser(HttpServletRequest request, Model model){
-        log.info("查询所有用户信息");
-        List<User> userList = userService.getAllUser();
-        model.addAttribute("userList",userList);
-        return "/showUser";
+    @RequestMapping("/showuser")
+    public String showUser(HttpServletRequest request, Model model,
+                           @RequestParam(required = false,defaultValue = "1") Integer curpage,@RequestParam(required = false) String username){
+        try {
+            List<User> userList=new ArrayList<User>();
+            String roleid= (String) request.getSession().getAttribute("roleid");
+            int counts=0;
+            if(username!=null){
+                if(roleid.equals("0")){
+                    userList=userService.getUsersByName(username);
+                }else {
+                    userList=userService.getUsersNotAdminByName(username);
+                }
+                counts=userList.size();
+            }else {
+                if(roleid.equals("0")){
+                    userList=userService.getUsersByPage(curpage);
+                    counts=userService.getCounts();
+                }else {
+                    userList=userService.getUsersNotAdminByPage(curpage);
+                    counts=userService.getNotAdminCounts();
+                }
+            }
+            model.addAttribute("users",userList);
+            int pagenum=counts% Contant.pagesize==0?counts/ Contant.pagesize:counts/ Contant.pagesize+1;
+            model.addAttribute("pagenum",pagenum);
+            model.addAttribute("counts",counts);
+            model.addAttribute("curpage",curpage);
+            model.addAttribute("pagesize", Contant.pagesize);
+            if(roleid.equals("1")||roleid.equals("0"))return "/root/usermanage/userList";
+            return "/toindex";
+        }catch (Exception e){
+            return "/error";
+        }
     }
 
     @RequestMapping("/index")

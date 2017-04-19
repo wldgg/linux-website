@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -65,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!---->
             <div class="top-menu">
                 <ul>
-                    <li ><a href="<%=basesite%>user/user">用户管理</a> </li>
+                    <li ><a href="<%=basesite%>user/showuser?curpage=1">用户管理</a> </li>
                     <li ><a href="<%=basesite%>evaluate/showevaluate?curpage=1">在线测评管理</a> </li>
                     <li><a href="<%=basesite%>file/showmaterials?curpage=1">教学资源管理</a></li>
                     <li><img src="<%=basepath%>/ui/images/lo1.png" alt=""></li>
@@ -116,6 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <%--</td>--%>
                                     <%--<td><a href="update.action?id=${material.materialsname}">修改</a>|<a href="delete.action?id=${material.materialsname}">删除</a></td>--%>
                                 <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/delete?evaluatename=${evaluate.evaluatename}">删除</a></td>
+                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/showscore?evaluatename=${evaluate.evaluatename}">查看完成情况</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

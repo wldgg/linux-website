@@ -4,11 +4,36 @@
 
     <resultMap id="UserBaseMap" type="com.cam.model.User">
         <id column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="user_role" property="userRole" jdbcType="INTEGER"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="useremail" property="userEmail" jdbcType="VARCHAR"/>
         <result column="userpwd" property="userPwd" jdbcType="VARCHAR"/>
         <result column="registertime" property="registerTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <select id="selectUsersByPage"  resultMap="UserBaseMap">
+        SELECT * FROM t_users WHERE user_role!=0 limit #{begin},20
+    </select>
+
+    <select id="selectUsersByName"  resultMap="UserBaseMap">
+        SELECT * FROM t_users WHERE user_role!=0 AND username like concat(concat('%',#{name}),'%') limit 0,20
+    </select>
+
+    <select id="selectUsersNotAdminByPage"  resultMap="UserBaseMap">
+        SELECT * FROM t_users WHERE user_role=2 limit #{begin},20
+    </select>
+
+    <select id="selectUsersNotAdminByName"  resultMap="UserBaseMap">
+        SELECT * FROM t_users WHERE user_role=2 AND username like concat(concat('%',#{name}),'%') limit 0,20
+    </select>
+
+    <select id="getNotAdminCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_users WHERE user_role=2
+    </select>
+
+    <select id="getCounts"  resultType="java.lang.Integer">
+        SELECT count(1) FROM t_users WHERE user_role!=0
+    </select>
 
     <select id="selectUserById" parameterType="java.lang.Integer" resultMap="UserBaseMap">
         SELECT * FROM t_users
@@ -31,9 +56,13 @@
     </select>
 
     <insert id="addUser" parameterType="com.cam.model.User">
-        INSERT INTO t_users(username,userpwd,useremail,registertime)
-        VALUES (#{user.username},#{user.userPwd},#{user.userEmail},now())
+        INSERT INTO t_users(username,userpwd,useremail,registertime,user_role)
+        VALUES (#{user.username},#{user.userPwd},#{user.userEmail},now(),2)
     </insert>
+
+    <update id="updateUserRole">
+        update t_users set user_role=#{role} where username=#{username};
+    </update>
 
     <select id="selectAllUser" resultMap="UserBaseMap">
         SELECT * FROM t_users

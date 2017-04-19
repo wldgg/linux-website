@@ -1,5 +1,6 @@
 package com.cam.service.impl;
 
+import com.cam.contant.Contant;
 import com.cam.dao.UserDao;
 import com.cam.model.User;
 import com.cam.service.UserService;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
-    
+
     @Resource
     private UserDao userDao;
 
@@ -28,13 +29,13 @@ public class UserServiceImpl implements UserService {
         return userDao.selectUserByUsername(username);
     }
 
-    public boolean checkUserAndPwd(String username, String userPwd) {
+    public User checkUserAndPwd(String username, String userPwd) {
         User user=userDao.selectUserByUsernameAndUserPwd(username,userPwd);
-        if (user!=null){
-            return true;
-        }else {
-            return false;
-        }
+        return user;
+    }
+
+    public void updateUserRole(String username, Integer role) {
+        userDao.updateUserRole(username,role);
     }
 
     public boolean addUser(User user) {
@@ -48,7 +49,31 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         return userDao.selectUserByEmail(email);
     }
-    
+
+    public List<User> getUsersByPage(int page) {
+        return userDao.selectUsersByPage((page-1)* Contant.pagesize);
+    }
+
+    public List<User> getUsersByName(String name) {
+        return userDao.selectUsersByName(name);
+    }
+
+    public List<User> getUsersNotAdminByPage(int page) {
+        return userDao.selectUsersNotAdminByPage((page-1)* Contant.pagesize);
+    }
+
+    public List<User> getUsersNotAdminByName(String name) {
+        return userDao.selectUsersNotAdminByName(name);
+    }
+
+    public int getCounts() {
+        return userDao.getCounts();
+    }
+
+    public int getNotAdminCounts() {
+        return userDao.getNotAdminCounts();
+    }
+
     public List<User> getAllUser() {
         return userDao.selectAllUser();
     }

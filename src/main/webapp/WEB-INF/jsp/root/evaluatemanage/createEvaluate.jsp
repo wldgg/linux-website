@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="header-main">
             <div class="top-menu">
                 <ul>
-                    <li ><a href="<%=basesite%>user/user">用户管理</a> </li>
+                    <li ><a href="<%=basesite%>user/showuser?curpage=1">用户管理</a> </li>
                     <li ><a href="<%=basesite%>evaluate/showevaluate?curpage=1">在线测评管理</a> </li>
                     <li><a href="<%=basesite%>file/showmaterials?curpage=1">教学资源管理</a></li>
                     <li><img src="<%=basepath%>/ui/images/lo1.png" alt=""></li>

@@ -17,4 +17,19 @@
         VALUES (#{score.evaluateid},#{score.evaluatename},#{score.userid},#{score.username},#{score.score})
     </insert>
 
+    <select id="selectScoreByEvaluateName" resultMap="ScoreBaseMap">
+        SELECT * FROM t_score
+        WHERE evaluatename = #{name} ORDER BY username
+    </select>
+
+    <select id="selectScoreByUserName" resultMap="ScoreBaseMap">
+        SELECT * FROM t_score
+        WHERE username = #{name} ORDER BY evaluatename
+    </select>
+
+    <select id="selectScoreByUserAndEvaluateName" resultMap="ScoreBaseMap">
+        SELECT * FROM t_score
+        WHERE username = #{username} AND evaluatename = #{evaluatename} ORDER BY addtime
+    </select>
+
 </mapper>

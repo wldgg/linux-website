@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!---->
             <div class="top-menu">
                 <ul>
-                    <li ><a href="<%=basesite%>user/user">用户管理</a> </li>
+                    <li ><a href="<%=basesite%>user/showuser?curpage=1">用户管理</a> </li>
                     <li ><a href="<%=basesite%>evaluate/showevaluate?curpage=1">在线测评管理</a> </li>
                     <li><a href="<%=basesite%>file/showmaterials?curpage=1">教学资源管理</a></li>
                     <li><img src="<%=basepath%>/ui/images/lo1.png" alt=""></li>
@@ -86,11 +86,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="typrography">
     <div class="container">
         <div class="page">
-            <h3 class="typo1">Typography</h3>
+            <h3 class="typo1">批量导入用户</h3>
             <!--button-->
             <div class="grid_3 grid_4">
                 <div class="page-header">
-                    <h3>Headings</h3>
+                    <h4>上传excel文件批量导入用户，默认为普通用户权限</h4>
                 </div>
 
                 <div class="bs-example">
@@ -98,14 +98,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         用户信息Excel文件: <input type="file" name="file"/><br/>
                         <input type="submit" value="上传">
                     </form>
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td><h3 id="h3-bootstrap-heading">h3. Bootstrap heading<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
-                            <td class="type-info">Semibold 24px</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <%--<table class="table">--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td><h3 id="h3-bootstrap-heading">h3. Bootstrap heading<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>--%>
+                            <%--<td class="type-info">Semibold 24px</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
                 </div>
             </div>
         </div>

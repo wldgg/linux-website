@@ -10,7 +10,7 @@ public class User {
     private Integer userid;
     private String username;
     private String userPwd;
-    private String userRole;
+    private Integer userRole;
     private String userEmail;
     private Date registerTime;
 
@@ -43,11 +43,11 @@ public class User {
         this.userPwd = userPwd;
     }
 
-    public String getUserRole() {
+    public Integer getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(Integer userRole) {
         this.userRole = userRole;
     }
 

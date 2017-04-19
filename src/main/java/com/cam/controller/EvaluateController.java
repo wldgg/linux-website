@@ -126,120 +126,154 @@ public class EvaluateController {
 
     @RequestMapping("/importexcel")
     public String importExcelEvaluate(HttpServletRequest request,@RequestParam MultipartFile file,Model model) throws Exception{
-        if(file.isEmpty()){
-            System.out.println("文件未上传!");
-        }
-        else{
-            Workbook workbook=null;
-            String filename=file.getOriginalFilename();
-            String fileType = filename.substring(filename.lastIndexOf(".")+1);
-            if (fileType.equalsIgnoreCase("xlsx")) {
-                workbook=new XSSFWorkbook(file.getInputStream());
-            }else if(fileType.equalsIgnoreCase("xls")){
-                workbook = new HSSFWorkbook(file.getInputStream());
+        try {
+            if(file.isEmpty()){
+                System.out.println("文件未上传!");
             }
-            for (int sheetindex=0;sheetindex<workbook.getNumberOfSheets();sheetindex++){
-                Sheet sheet=workbook.getSheetAt(sheetindex);
-                String sheetname=sheet.getSheetName();
-                if(sheet==null){
-                    continue;
+            else{
+                Workbook workbook=null;
+                String filename=file.getOriginalFilename();
+                String fileType = filename.substring(filename.lastIndexOf(".")+1);
+                if (fileType.equalsIgnoreCase("xlsx")) {
+                    workbook=new XSSFWorkbook(file.getInputStream());
+                }else if(fileType.equalsIgnoreCase("xls")){
+                    workbook = new HSSFWorkbook(file.getInputStream());
                 }
-                if (sheetname.equals("选择题")){
-                    ImportEvaluateUtils.importChoose(sheet,chooseService);
-                }else if (sheetname.equals("填空题")){
-                    ImportEvaluateUtils.importVacant(sheet,vacantService);
-                }else if (sheetname.equals("判断题")){
-                    ImportEvaluateUtils.importJudge(sheet,judgeService);
-                }else if (sheetname.equals("简答题")){
-                    ImportEvaluateUtils.importShortanswer(sheet,shortAnswerService);
+                for (int sheetindex=0;sheetindex<workbook.getNumberOfSheets();sheetindex++){
+                    Sheet sheet=workbook.getSheetAt(sheetindex);
+                    String sheetname=sheet.getSheetName();
+                    if(sheet==null){
+                        continue;
+                    }
+                    if (sheetname.equals("选择题")){
+                        ImportEvaluateUtils.importChoose(sheet,chooseService);
+                    }else if (sheetname.equals("填空题")){
+                        ImportEvaluateUtils.importVacant(sheet,vacantService);
+                    }else if (sheetname.equals("判断题")){
+                        ImportEvaluateUtils.importJudge(sheet,judgeService);
+                    }else if (sheetname.equals("简答题")){
+                        ImportEvaluateUtils.importShortanswer(sheet,shortAnswerService);
+                    }
                 }
             }
+            return showEvaluate(request,model,1,"");
+        }catch (Exception e){
+            return "/error";
         }
-        return showEvaluate(request,model,1,"");
+
     }
 
     @RequestMapping("/create")
     public String createEvaluate(HttpServletRequest request,Model model, @RequestParam String evaluatename,@RequestParam Integer choosenum,
                                  @RequestParam Integer vacantnum,@RequestParam Integer judgenum,@RequestParam Integer shortanswernum) throws IOException, ParseException {
-
-        int choosesize=chooseService.getCounts();
-        if(choosesize<choosenum)choosenum=choosesize;
-        int vacantsize=vacantService.getCounts();
-        if(vacantsize<vacantnum)vacantnum=vacantsize;
-        int judgesize=judgeService.getCounts();
-        if(judgesize<judgenum)judgenum=judgesize;
-        int shortanswersize=shortAnswerService.getCounts();
-        if(shortanswersize<shortanswernum)shortanswernum=shortanswersize;
-
-        String chooselist=ImportEvaluateUtils.getRandomList(choosenum,choosesize);
-        String vacantlist=ImportEvaluateUtils.getRandomList(vacantnum,vacantsize);
-        String judgelist=ImportEvaluateUtils.getRandomList(judgenum,judgesize);
-        String shortanswerlist=ImportEvaluateUtils.getRandomList(shortanswernum,shortanswersize);
-
-        Evaluate evaluate=new Evaluate();
-        evaluate.setEvaluatename(evaluatename);
-        evaluate.setChoosenum(choosenum);
-        evaluate.setChooselist(chooselist);
-        evaluate.setVacantnum(vacantnum);
-        evaluate.setVacantlist(vacantlist);
-        evaluate.setJudgenum(judgenum);
-        evaluate.setJudgelist(judgelist);
-        evaluate.setShortanswernum(shortanswernum);
-        evaluate.setShortanswerlist(shortanswerlist);
         try {
+            int choosesize=chooseService.getCounts();
+            if(choosesize<choosenum)choosenum=choosesize;
+            int vacantsize=vacantService.getCounts();
+            if(vacantsize<vacantnum)vacantnum=vacantsize;
+            int judgesize=judgeService.getCounts();
+            if(judgesize<judgenum)judgenum=judgesize;
+            int shortanswersize=shortAnswerService.getCounts();
+            if(shortanswersize<shortanswernum)shortanswernum=shortanswersize;
+
+            String chooselist=ImportEvaluateUtils.getRandomList(choosenum,choosesize);
+            String vacantlist=ImportEvaluateUtils.getRandomList(vacantnum,vacantsize);
+            String judgelist=ImportEvaluateUtils.getRandomList(judgenum,judgesize);
+            String shortanswerlist=ImportEvaluateUtils.getRandomList(shortanswernum,shortanswersize);
+
+            Evaluate evaluate=new Evaluate();
+            evaluate.setEvaluatename(evaluatename);
+            evaluate.setChoosenum(choosenum);
+            evaluate.setChooselist(chooselist);
+            evaluate.setVacantnum(vacantnum);
+            evaluate.setVacantlist(vacantlist);
+            evaluate.setJudgenum(judgenum);
+            evaluate.setJudgelist(judgelist);
+            evaluate.setShortanswernum(shortanswernum);
+            evaluate.setShortanswerlist(shortanswerlist);
             evaluateService.addEvaluate(evaluate);
+            return showEvaluate(request,model,1,"");
         }catch (Exception e){
-
+            return "/error";
         }
-
-        return showEvaluate(request,model,1,"");
     }
 
     @RequestMapping("/delete")
     public String deleteEvaluate(HttpServletRequest request,Model model,@RequestParam String evaluatename){
-        evaluateService.removeEvaluate(evaluatename);
-        return showEvaluate(request,model,1,"");
+        try {
+            evaluateService.removeEvaluate(evaluatename);
+            return showEvaluate(request,model,1,"");
+        }catch (Exception e){
+            return "/error";
+        }
     }
 
     @RequestMapping("/open")
     public String openEvaluate(HttpServletRequest request,Model model,@RequestParam String evaluatename){
-        Evaluate evaluate=evaluateService.getOneEvaluateByName(evaluatename);
-        String[] chooseins=ImportEvaluateUtils.getInString(evaluate.getChooselist());
-        String[] vacantins=ImportEvaluateUtils.getInString(evaluate.getVacantlist());
-        String[] judgeins=ImportEvaluateUtils.getInString(evaluate.getJudgelist());
-        String[] shortanswerins=ImportEvaluateUtils.getInString(evaluate.getShortanswerlist());
-        List<Choose> choose=chooseService.getInString(chooseins);
-        List<Vacant> vacant=vacantService.getInString(vacantins);
-        List<Judge> judge=judgeService.getInString(judgeins);
-        List<ShortAnswer> shortAnswer=shortAnswerService.getInString(shortanswerins);
-        model.addAttribute("evaluate",evaluate);
-        model.addAttribute("choose",choose);
-        model.addAttribute("vacant",vacant);
-        model.addAttribute("judge",judge);
-        model.addAttribute("shortAnswer",shortAnswer);
-        return "/user/evaluate/realEvaluate";
+        try {
+            Evaluate evaluate=evaluateService.getOneEvaluateByName(evaluatename);
+            String[] chooseins=ImportEvaluateUtils.getInString(evaluate.getChooselist());
+            String[] vacantins=ImportEvaluateUtils.getInString(evaluate.getVacantlist());
+            String[] judgeins=ImportEvaluateUtils.getInString(evaluate.getJudgelist());
+            String[] shortanswerins=ImportEvaluateUtils.getInString(evaluate.getShortanswerlist());
+            List<Choose> choose=chooseService.getInString(chooseins);
+            List<Vacant> vacant=vacantService.getInString(vacantins);
+            List<Judge> judge=judgeService.getInString(judgeins);
+            List<ShortAnswer> shortAnswer=shortAnswerService.getInString(shortanswerins);
+            model.addAttribute("evaluate",evaluate);
+            model.addAttribute("choose",choose);
+            model.addAttribute("vacant",vacant);
+            model.addAttribute("judge",judge);
+            model.addAttribute("shortAnswer",shortAnswer);
+            return "/user/evaluate/realEvaluate";
+        }catch (Exception e){
+            return "/error";
+        }
     }
 
     @RequestMapping("/showevaluate")
     public String showEvaluate(HttpServletRequest request, Model model, @RequestParam(required = false,defaultValue = "1") Integer curpage,
                                @RequestParam(required = false) String evaluatename){
-        List<Evaluate> evaluateList=new ArrayList<Evaluate>();
-        int counts=0;
-        if(evaluatename!=null){
-            evaluateList=evaluateService.getEvaluateByName(evaluatename);
-            counts=evaluateList.size();
-        }else {
-            evaluateList=evaluateService.getEvaluateByPage(curpage);
-            counts=evaluateService.getCounts();
+        try {
+            List<Evaluate> evaluateList=new ArrayList<Evaluate>();
+            int counts=0;
+            if(evaluatename!=null){
+                evaluateList=evaluateService.getEvaluateByName(evaluatename);
+                counts=evaluateList.size();
+            }else {
+                evaluateList=evaluateService.getEvaluateByPage(curpage);
+                counts=evaluateService.getCounts();
+            }
+            model.addAttribute("evaluate",evaluateList);
+            int pagenum=counts% Contant.pagesize==0?counts/ Contant.pagesize:counts/ Contant.pagesize+1;
+            model.addAttribute("pagenum",pagenum);
+            model.addAttribute("counts",counts);
+            model.addAttribute("curpage",curpage);
+            model.addAttribute("pagesize", Contant.pagesize);
+            if(request.getSession().getAttribute("roleid").equals("2"))return "/user/evaluate/evaluate";
+            return "/root/evaluatemanage/evaluatesList";
+        }catch (Exception e){
+            return "/error";
         }
-        model.addAttribute("evaluate",evaluateList);
-        int pagenum=counts% Contant.pagesize==0?counts/ Contant.pagesize:counts/ Contant.pagesize+1;
-        model.addAttribute("pagenum",pagenum);
-        model.addAttribute("counts",counts);
-        model.addAttribute("curpage",curpage);
-        model.addAttribute("pagesize", Contant.pagesize);
-        if(request.getSession().getAttribute("username").equals("root"))return "/root/evaluatemanage/evaluatesList";
-        return "/user/evaluate/evaluate";
+    }
+
+    @RequestMapping("/showscore")
+    public String showScore(HttpServletRequest request, Model model, @RequestParam(required = false) String username,
+                               @RequestParam(required = false) String evaluatename){
+        try {
+            List<Score> scoreList=new ArrayList<Score>();
+            if(username!=null&&evaluatename!=null){
+                scoreList=scoreService.getScoreByUserAndEvaluateName(username,evaluatename);
+            }else if (evaluatename!=null){
+                scoreList=scoreService.getScoreByEvaluateName(evaluatename);
+            }else if (username!=null){
+                scoreList=scoreService.getScoreByUserName(username);
+            }
+            model.addAttribute("score",scoreList);
+            return "/root/evaluatemanage/scoreList";
+        }catch (Exception e){
+            return "/error";
+        }
     }
 
 }

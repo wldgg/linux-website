@@ -9,6 +9,18 @@ import java.util.List;
  */
 public interface UserService {
 
+    List<User> getUsersByPage(int page);
+
+    List<User> getUsersByName(String name);
+
+    List<User> getUsersNotAdminByPage(int page);
+
+    List<User> getUsersNotAdminByName(String name);
+
+    int getCounts();
+
+    int getNotAdminCounts();
+
     List<User> getAllUser();
 
     User getUserByEmail(String email);
@@ -17,7 +29,9 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
-    boolean checkUserAndPwd(String username, String userPwd);
+    User checkUserAndPwd(String username, String userPwd);
+
+    void updateUserRole(String username, Integer role);
 
     boolean addUser(User user);
 }

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: rain
-  Date: 2017/4/4
-  Time: 21:39
+  User: wangl
+  Date: 2017/4/18
+  Time: 20:45
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -83,46 +83,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="typrography">
     <div class="container">
         <div class="page">
-            <h3 class="typo1">资源管理</h3>
+            <h3 class="typo1">用户管理</h3>
             <!--button-->
             <div class="grid_3 grid_4">
                 <div class="page-header">
-                    <form id = "queryForm" action="<%=basesite%>file/showmaterials" method="post">
+                    <form id = "queryForm" action="<%=basesite%>user/showuser" method="post">
                         <input type="hidden" name="curpage" value="1">
-                        资源名：<input type="text" name = "materialsname" value="">
+                        用户名：<input type="text" name = "username" value="">
                         <input style="background-color: darkgray" class="hvr-bounce-to-right" type="submit" value="查询">
-                        <input onclick="gotoAddPage()" style="background-color: darkgray" class="hvr-bounce-to-right" type="button" value="上传资源">
+                        <input onclick="gotoAddPage()" style="background-color: darkgray" class="hvr-bounce-to-right" type="button" value="批量导入用户">
                     </form>
                 </div>
                 <div class="bs-example">
                     <table class="table">
 
                         <thead>
-                        <th>资源名</th>
-                        <th>资源创建时间</th>
+                        <th>用户名</th>
+                        <th>用户权限</th>
+                        <th>用户注册时间</th>
                         <th>操作</th>
                         </thead>
                         <tbody>
-                        <c:forEach items="${materials}" var="material">
+                        <c:forEach items="${users}" var="user">
                             <tr>
-                                <td><h3 id="h3-bootstrap-heading">${material.materialsname}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
-                                <td class="type-info">${material.addtime}</td>
+                                <td><h3 id="h3-bootstrap-heading">${user.username}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
+                                <td class="type-info">
+                                    <c:if test="${user.userRole eq 1}">
+                                        管理员
+                                    </c:if>
+                                    <c:if test="${user.userRole eq 2}">
+                                        普通用户
+                                    </c:if>
+                                </td>
+                                <td class="type-info">${user.registerTime}</td>
                                     <%--<td>--%>
                                     <%--<c:if test="${user.nIsAdmin == 0}">否</c:if>--%>
                                     <%--<c:if test="${user.nIsAdmin == 1}">是</c:if>--%>
                                     <%--</td>--%>
                                     <%--<td><a href="update.action?id=${material.materialsname}">修改</a>|<a href="delete.action?id=${material.materialsname}">删除</a></td>--%>
-                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>file/delete?materialsname=${material.materialsname}">删除</a></td>
+                                <%
+                                    if(request.getSession().getAttribute("roleid").equals("0")){
+                                %>
+                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>user/update?username=${user.username}&role=${user.userRole}">变更权限</a></td>
+                                <%
+                                    }
+                                %>
+                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/showscore?username=${user.username}">查看成绩</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                     <div style="text-align: center">
                         <p>
-                            <a class="type-info" href="<%=basesite%>file/showmaterials?curpage=1">首页</a>
-                            <a class="type-info" href="<%=basesite%>file/showmaterials?curpage=${curpage-1 eq 0?1:curpage-1}">上一页</a>
-                            <a class="type-info" href="<%=basesite%>file/showmaterials?curpage=${curpage eq pagenum?pagenum:curpage+1}">下一页</a>
-                            <a class="type-info" href="<%=basesite%>file/showmaterials?curpage=${pagenum}">末页</a>
+                            <a class="type-info" href="<%=basesite%>user/showuser?curpage=1">首页</a>
+                            <a class="type-info" href="<%=basesite%>user/showuser?curpage=${curpage-1 eq 0?1:curpage-1}">上一页</a>
+                            <a class="type-info" href="<%=basesite%>user/showuser?curpage=${curpage eq pagenum?pagenum:curpage+1}">下一页</a>
+                            <a class="type-info" href="<%=basesite%>user/showuser?curpage=${pagenum}">末页</a>
                         </p>
                         <p>当前第${curpage}页/共${pagenum}页,一共有${counts}条记录, 每页 ${pagesize} 条</p>
                         跳转到第<input type="number" id = "page" size="2">页
@@ -142,11 +158,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 alert("超出页数范围");
                 return false;
             }
-            window.location.href="<%=basesite%>file/showmaterials?curpage="+str;
+            window.location.href="<%=basesite%>user/showuser?curpage="+str;
         }
 
         function gotoAddPage() {
-            window.location.href="<%=basesite%>file/materials";
+            window.location.href="<%=basesite%>user/user";
         }
     </script>
 

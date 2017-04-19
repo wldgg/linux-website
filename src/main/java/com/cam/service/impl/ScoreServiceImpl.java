@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by wangl on 2017/4/16.
@@ -20,5 +21,17 @@ public class ScoreServiceImpl implements ScoreService {
 
     public void addScore(Score score) {
         scoreDao.addScore(score);
+    }
+
+    public List<Score> getScoreByEvaluateName(String name) {
+        return scoreDao.selectScoreByEvaluateName(name);
+    }
+
+    public List<Score> getScoreByUserName(String name) {
+        return scoreDao.selectScoreByUserName(name);
+    }
+
+    public List<Score> getScoreByUserAndEvaluateName(String username, String evaluatename) {
+        return scoreDao.selectScoreByUserAndEvaluateName(username,evaluatename);
     }
 }

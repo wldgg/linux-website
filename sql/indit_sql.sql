@@ -6,7 +6,7 @@ username varchar(32) not null unique,
 userpwd varchar(64) not null,
 user_role int not null default 1,
 useremail varchar(32) not null,
-registertime datetime
+registertime datetime default now()
 );
 
 insert into t_users(username,userpwd,user_role,useremail,registertime)
