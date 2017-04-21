@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="<%=basesite%>file/showmaterials?curpage=1">教学资源管理</a></li>
                     <li><img src="<%=basepath%>/ui/images/lo1.png" alt=""></li>
                     <li><a href="<%=basesite%>experiment/showexperiment?curpage=1">实验管理</a></li>
-                    <li><a href="<%=basepath%>/jsp/user/personal/personal.jsp">hello <%=request.getSession().getAttribute("username")%></a></li>
+                    <li><a href="#">hello <%=request.getSession().getAttribute("username")%></a></li>
                     <li><a href="<%=basesite%>user/quit">退出</a></li>
                 </ul>
             </div>

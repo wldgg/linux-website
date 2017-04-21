@@ -8,6 +8,7 @@ import com.cam.service.ChooseService;
 import com.cam.service.JudgeService;
 import com.cam.service.ShortAnswerService;
 import com.cam.service.VacantService;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -134,4 +135,23 @@ public class ImportEvaluateUtils {
     public static String[] getInString(String s){
         return s.split(";");
     }
+
+    public static Object getCellValue(Cell cell){
+        if(cell == null){
+            return null;
+        }else if(cell.getCellType() == Cell.CELL_TYPE_BLANK){
+            return "";
+        }else if(cell.getCellType() == Cell.CELL_TYPE_STRING){
+            return cell.getStringCellValue().trim();
+        }else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+            return cell.getNumericCellValue();
+        }else if(cell.getCellType() == Cell.CELL_TYPE_BOOLEAN){
+            return cell.getBooleanCellValue();
+        }else if(cell.getCellType() == Cell.CELL_TYPE_FORMULA){
+            return cell.getNumericCellValue()+" 公式为："+cell.getCellFormula();
+        }else {
+            return cell.toString();
+        }
+    }
+
 }

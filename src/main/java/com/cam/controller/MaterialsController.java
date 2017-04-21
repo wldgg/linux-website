@@ -29,16 +29,16 @@ public class MaterialsController {
     private MaterialsService materialsService;
 
     @RequestMapping("/download")
-    public String download(@RequestParam String fileName, HttpServletRequest request,HttpServletResponse response) throws IOException{
+    public String download(@RequestParam String materialsname, HttpServletRequest request, HttpServletResponse response) throws IOException{
         try {
             response.setCharacterEncoding("utf-8");
             response.setContentType("multipart/form-data");
-            response.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("gbk"), "iso-8859-1"));
+            response.setHeader("Content-Disposition", "attachment;fileName=" + new String(materialsname.getBytes("gbk"), "iso-8859-1"));
             InputStream inputStream = null;
             OutputStream os = null;
             try {
-                String path = request.getSession().getServletContext().getRealPath("file") + File.separator;
-                File file = new File(path + fileName);
+                String path = request.getSession().getServletContext().getRealPath("file") + File.separator+"materials"+ File.separator;
+                File file = new File(path + materialsname);
                 if (!file.exists()) {
                     return "error";
                 }
@@ -83,7 +83,7 @@ public class MaterialsController {
                     //得到上传的文件名
                     String fileName = file.getOriginalFilename();
                     //得到服务器项目发布运行所在地址
-                    String path1 = request.getSession().getServletContext().getRealPath("file")+ File.separator;
+                    String path1 = request.getSession().getServletContext().getRealPath("file")+ File.separator+"materials"+ File.separator;
                     //  此处未使用UUID来生成唯一标识,用日期做为标识
                     String realfilename=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+ fileName;
                     String path = path1+ realfilename;
@@ -93,6 +93,7 @@ public class MaterialsController {
                     File localFile = new File(path);
                     file.transferTo(localFile);
                     materialsService.addMaterials(new Materials(realfilename));
+                    Thread.sleep(500);
                 }
             }
             return "/root/materialsmanage/materialUpload";
@@ -110,6 +111,11 @@ public class MaterialsController {
     public String deletematerials(HttpServletRequest request,Model model,@RequestParam String materialsname){
         try {
             materialsService.removeMaterials(materialsname);
+            String path1 = request.getSession().getServletContext().getRealPath("file")+ File.separator+"materials"+ File.separator;
+            File file=new File(path1+materialsname);
+            if(file.exists()){
+                file.delete();
+            }
             return showMaterials(request,model,1,"");
         }catch (Exception e){
             return "/error";

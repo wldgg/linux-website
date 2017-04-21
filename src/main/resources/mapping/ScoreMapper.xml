@@ -4,17 +4,15 @@
 
     <resultMap id="ScoreBaseMap" type="com.cam.model.Score">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="evaluateid" property="evaluateid" jdbcType="INTEGER"/>
         <result column="evaluatename" property="evaluatename" jdbcType="VARCHAR"/>
-        <result column="userid" property="userid" jdbcType="INTEGER"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <insert id="addScore" parameterType="com.cam.model.Score">
-        INSERT INTO t_score(evaluateid,evaluatename,userid,username,score)
-        VALUES (#{score.evaluateid},#{score.evaluatename},#{score.userid},#{score.username},#{score.score})
+        INSERT INTO t_score(evaluatename,username,score)
+        VALUES (#{score.evaluatename},#{score.username},#{score.score})
     </insert>
 
     <select id="selectScoreByEvaluateName" resultMap="ScoreBaseMap">
@@ -29,7 +27,15 @@
 
     <select id="selectScoreByUserAndEvaluateName" resultMap="ScoreBaseMap">
         SELECT * FROM t_score
-        WHERE username = #{username} AND evaluatename = #{evaluatename} ORDER BY addtime
+        WHERE username = #{username} AND evaluatename = #{evaluatename}
     </select>
+
+    <update id="updateScoreByUserAndEvaluateName">
+        UPDATE t_score set score=#{score},addtime=now() where username = #{username} AND evaluatename = #{evaluatename}
+    </update>
+
+    <delete id="deleteByEvaluatename">
+        DELETE t_score WHERE evaluatename = #{evaluatename}
+    </delete>
 
 </mapper>

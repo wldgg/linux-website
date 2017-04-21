@@ -34,4 +34,12 @@ public class ScoreServiceImpl implements ScoreService {
     public List<Score> getScoreByUserAndEvaluateName(String username, String evaluatename) {
         return scoreDao.selectScoreByUserAndEvaluateName(username,evaluatename);
     }
+
+    public void updateScoreByUserAndEvaluateName(String username, String evaluatename, Integer score) {
+        scoreDao.updateScoreByUserAndEvaluateName(username,evaluatename,score);
+    }
+
+    public void deleteByEvaluatename(String evaluatename) {
+        scoreDao.deleteByEvaluatename(evaluatename);
+    }
 }

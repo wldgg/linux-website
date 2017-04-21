@@ -17,5 +17,8 @@ public interface ScoreService {
 
     List<Score> getScoreByUserAndEvaluateName(String username, String evaluatename);
 
+    void updateScoreByUserAndEvaluateName(String username,String evaluatename,Integer score);
+
+    void deleteByEvaluatename(String evaluatename);
 
 }

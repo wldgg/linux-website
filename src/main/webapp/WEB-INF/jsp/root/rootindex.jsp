@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <%
                         if(request.getSession().getAttribute("username")!=null){
                     %>
-                    <li><a href="<%=basepath%>/jsp/user/personal/personal.jsp">个人中心:<%=request.getSession().getAttribute("username")%></a></li>
+                    <li><a href="#">hello: <%=request.getSession().getAttribute("username")%></a></li>
                     <li><a href="<%=basesite%>user/quit">退出</a></li>
                     <%
                     }else {
@@ -100,9 +100,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="password" name="password" id="password">
                                             </fieldset>
                                             <input type="submit" id="login" value="登陆">
-                                            <label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
+                                            <%--<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>--%>
                                         </fieldset>
-                                        <span><a href="#">忘记密码？</a></span> <span><a href="<%=basepath%>/jsp/register.jsp">没有账户？点击注册</a></span>
+                                        <%--<span><a href="#">忘记密码？</a></span> --%>
+                                        <span><a href="<%=basepath%>/jsp/register.jsp">没有账户？点击注册</a></span>
                                     </form>
                                 </div>
                             </div>

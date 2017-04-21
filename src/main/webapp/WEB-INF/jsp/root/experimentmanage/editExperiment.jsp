@@ -102,9 +102,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <form action="<%=basesite%>experiment/update" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="experimentid" name="experimentid" value="${experiment.experimentid}">
                 <input type="hidden" id="experimentfilename" name="experimentfilename" value="${experiment.experimentfile}">
-                <span style="color: red">*</span>实验名称：
+                <span style="color: red"></span>实验名称：(不可更改)
                 <br>
-                <input type="text" id="experimentname" name="experimentname" placeholder="experimentname" value="${experiment.experimentname}">
+                <input type="text" id="experimentname" name="experimentname" placeholder="experimentname" onfocus="this.blur()" value="${experiment.experimentname}">
                 <br>
                 <span style="color: red">*</span>实验描述：
                 <br>

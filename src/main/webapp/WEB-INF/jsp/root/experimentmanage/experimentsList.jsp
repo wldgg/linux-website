@@ -97,11 +97,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="bs-example">
                     <table class="table">
-
                         <thead>
                         <th>实验名</th>
                         <th>实验创建时间</th>
                         <th>操作</th>
+                        <th></th>
                         <th></th>
                         </thead>
                         <tbody>
@@ -116,6 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <%--<td><a href="update.action?id=${material.materialsname}">修改</a>|<a href="delete.action?id=${material.materialsname}">删除</a></td>--%>
                                 <td><a class="hvr-bounce-to-right" href="<%=basesite%>experiment/edit?experimentname=${experiment.experimentname}">修改</a></td>
                                 <td><a class="hvr-bounce-to-right" href="<%=basesite%>experiment/delete?experimentname=${experiment.experimentname}">删除</a></td>
+                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>experiment/showreport?experimentname=${experiment.experimentname}">查看实验完成情况</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

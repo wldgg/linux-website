@@ -4,6 +4,7 @@ import com.cam.contant.Contant;
 import com.cam.model.User;
 import com.cam.model.UserRegister;
 import com.cam.service.UserService;
+import com.cam.utils.ImportEvaluateUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +53,7 @@ public class UserController {
                 Workbook workbook=null;
                 String filename=file.getOriginalFilename();
                 String fileType = filename.substring(filename.lastIndexOf(".")+1);
+                DecimalFormat decimalFormat=new DecimalFormat("0");
                 if (fileType.equalsIgnoreCase("xlsx")) {
                     workbook=new XSSFWorkbook(file.getInputStream());
                 }else if(fileType.equalsIgnoreCase("xls")){
@@ -63,9 +66,9 @@ public class UserController {
                     }
                     for (int rowindex=0;rowindex<=sheet.getLastRowNum();rowindex++){
                         Row row=sheet.getRow(rowindex);
-                        String username=row.getCell(0).toString().trim();
-                        String userPwd=row.getCell(1).toString().trim();
-                        String userEmail=row.getCell(2).toString().trim();
+                        String username= decimalFormat.format(ImportEvaluateUtils.getCellValue(row.getCell(0)));
+                        String userPwd= decimalFormat.format(ImportEvaluateUtils.getCellValue(row.getCell(1)));
+                        String userEmail= (String) ImportEvaluateUtils.getCellValue(row.getCell(2));
                         User user=new User();
                         user.setUsername(username);
                         user.setUserPwd(userPwd);

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cam.dao.ExperReportDao">
+
+    <resultMap id="ExperReportBaseMap" type="com.cam.model.ExperReport">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="experimentname" property="experimentname" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="filename" property="filename" jdbcType="VARCHAR"/>
+        <result column="downloadcnt" property="downloadcnt" jdbcType="INTEGER"/>
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addExperReport" parameterType="com.cam.model.ExperReport">
+        INSERT INTO experiment_report(experimentname,username,filename)
+        VALUES (#{experReport.experimentname},#{experReport.username},#{experReport.filename})
+    </insert>
+
+    <select id="selectReportByExperimentName" resultMap="ExperReportBaseMap">
+        SELECT * FROM experiment_report
+        WHERE experimentname = #{name} ORDER BY username
+    </select>
+
+    <select id="selectReportByUserName" resultMap="ExperReportBaseMap">
+        SELECT * FROM experiment_report
+        WHERE username = #{name} ORDER BY experimentname
+    </select>
+
+    <select id="selectReportByUserAndExperimentName" resultMap="ExperReportBaseMap">
+        SELECT * FROM experiment_report
+        WHERE username = #{username} AND experimentname = #{experimentname}
+    </select>
+
+    <update id="updateReportByUserAndExperimentName">
+        UPDATE experiment_report set filename=#{filename},downloadcnt=0,addtime=now() where username = #{username} AND experimentname = #{experimentname}
+    </update>
+
+    <update id="updateDownloadCntByUserAndExperimentName" parameterType="com.cam.model.ExperReport">
+        UPDATE experiment_report set downloadcnt=#{cnt} where username = #{username} AND experimentname = #{experimentname}
+    </update>
+
+    <update id="deleteByExperimentName">
+        DELETE experiment_report where experimentname = #{experimentname}
+    </update>
+
+</mapper>

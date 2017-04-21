@@ -18,8 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,7 +51,7 @@ public class EvaluateController {
     private ShortAnswerService shortAnswerService;
 
     @RequestMapping("/correct")
-    public String correctEvaluate(HttpServletRequest request,@RequestParam String evaluatename,EvaluateAnswerList answerList){
+    public String correctEvaluate(HttpServletRequest request,Model model,@RequestParam String evaluatename,EvaluateAnswerList answerList){
         try {
             List<String> chooseList=answerList.getChooseList();
             List<String> chooseAns=answerList.getChooseAns();
@@ -73,9 +73,15 @@ public class EvaluateController {
             String username= (String) request.getSession().getAttribute("username");
             scorem.setUsername(username);
             scorem.setScore(score);
-            scoreService.addScore(scorem);
 
-            String path = request.getSession().getServletContext().getRealPath("evaluatefile")+File.separator+evaluatename+"-"+username+".xls";
+            List<Score> list=scoreService.getScoreByUserAndEvaluateName(username,evaluatename);
+            if (list.size()>0){
+                scoreService.updateScoreByUserAndEvaluateName(username,evaluatename,score);
+            }else {
+                scoreService.addScore(scorem);
+            }
+            String path = request.getSession().getServletContext().getRealPath("file")+File.separator+"evaluate"
+                    + File.separator+evaluatename+"-"+username+".xls";
             File file=new File(path);
             if (file.exists()){
                 file.delete();
@@ -92,7 +98,7 @@ public class EvaluateController {
             params.put(keys[7],shortAnswerAns);
             ExportExcelUtils.exportExcel(keys,params,path);
 
-            return "/toindex";
+            return showEvaluate(request,model,1,"");
         }catch (Exception e){
             return "/error";
         }
@@ -202,6 +208,18 @@ public class EvaluateController {
     public String deleteEvaluate(HttpServletRequest request,Model model,@RequestParam String evaluatename){
         try {
             evaluateService.removeEvaluate(evaluatename);
+            List<Score> list=scoreService.getScoreByEvaluateName(evaluatename);
+            Iterator it=list.iterator();
+            while (it.hasNext()){
+                Score score= (Score) it.next();
+                String path = request.getSession().getServletContext().getRealPath("file")+File.separator+"evaluate"
+                        + File.separator+evaluatename+"-"+score.getUsername()+".xls";
+                File file=new File(path);
+                if (file.exists()){
+                    file.delete();
+                }
+            }
+            scoreService.deleteByEvaluatename(evaluatename);
             return showEvaluate(request,model,1,"");
         }catch (Exception e){
             return "/error";
@@ -271,6 +289,49 @@ public class EvaluateController {
             }
             model.addAttribute("score",scoreList);
             return "/root/evaluatemanage/scoreList";
+        }catch (Exception e){
+            return "/error";
+        }
+    }
+
+    @RequestMapping("/downloadanswer")
+    public String downloadAnswer(@RequestParam String evaluatename,@RequestParam String username,
+                                 HttpServletRequest request, HttpServletResponse response, Model model) throws IOException{
+        try {
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("multipart/form-data");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + new String((evaluatename+"-"+username+".xls").getBytes("gbk"), "iso-8859-1"));
+            InputStream inputStream = null;
+            OutputStream os = null;
+            try {
+                String path = request.getSession().getServletContext().getRealPath("file")+File.separator+"evaluate"
+                        + File.separator+evaluatename+"-"+username+".xls";
+                File file = new File(path);
+                if (!file.exists()) {
+                    return "error";
+                }
+                inputStream = new FileInputStream(file);
+                os = response.getOutputStream();
+                byte[] b = new byte[2048];
+                int length;
+                while ((length = inputStream.read(b)) > 0) {
+                    os.write(b, 0, length);
+                }
+                os.flush();
+                // 这里主要关闭。
+                os.close();
+                inputStream.close();
+            } catch (Exception e) {
+                return "/error";
+            } finally {
+                if (os != null) {
+                    os.close();
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            }
+            return null;
         }catch (Exception e){
             return "/error";
         }

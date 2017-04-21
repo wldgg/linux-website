@@ -128,7 +128,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <%
                                     }
                                 %>
-                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/showscore?username=${user.username}">查看成绩</a></td>
+                                <c:if test="${user.userRole eq 2}">
+                                    <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/showscore?username=${user.username}">查看成绩</a></td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>

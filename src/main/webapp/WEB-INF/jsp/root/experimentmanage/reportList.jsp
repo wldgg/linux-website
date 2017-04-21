@@ -9,7 +9,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>查看成绩</title>
+    <title>实验报告提交情况</title>
     <%@include file="../../include.jsp"%>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Custom Theme files -->
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="typrography">
     <div class="container">
         <div class="page">
-            <h3 class="typo1">成绩查看</h3>
+            <h3 class="typo1">实验报告提交情况</h3>
             <!--button-->
             <div class="grid_3 grid_4">
                 <%--<div class="page-header">--%>
@@ -98,25 +98,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="bs-example">
                     <table class="table">
                         <thead>
-                        <th>试卷名</th>
+                        <th>实验名</th>
                         <th>用户名</th>
-                        <th>试题完成时间</th>
+                        <th>实验报告提交时间</th>
                         <%--<th>操作</th>--%>
-                        <th>分数</th>
+                        <th>下载次数</th>
                         </thead>
                         <tbody>
-                        <c:forEach items="${score}" var="score">
+                        <c:forEach items="${report}" var="experreport">
                             <tr>
-                                <td><h3 class="h3-bootstrap-heading">${score.evaluatename}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
-                                <td><h3 class="h3-bootstrap-heading">${score.username}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
-                                <td class="type-info">${score.addtime}</td>
+                                <td><h3 class="h3-bootstrap-heading">${experreport.experimentname}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
+                                <td><h3 class="h3-bootstrap-heading">${experreport.username}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
+                                <td class="type-info">${experreport.addtime}</td>
                                     <%--<td>--%>
                                     <%--<c:if test="${user.nIsAdmin == 0}">否</c:if>--%>
                                     <%--<c:if test="${user.nIsAdmin == 1}">是</c:if>--%>
                                     <%--</td>--%>
-                                    <%--<td><a href="update.action?id=${material.materialsname}">修改</a>|<a href="delete.action?id=${material.materialsname}">删除</a></td>--%>
-                                <td><a class="hvr-bounce-to-right">${score.score}</a></td>
-                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/downloadanswer?evaluatename=${score.evaluatename}&username=${score.username}">下载该用户答案</a></td>
+                                <td><a class="hvr-bounce-to-right">${experreport.downloadcnt}</a></td>
+                                <%--<td><a class="hvr-bounce-to-right" onclick="downloadReport()">下载实验报告</a></td>--%>
+                                <td><a class="hvr-bounce-to-right" href="<%=basesite%>experiment/downloadreport?experimentfile=${experreport.filename}&experimentname=${experreport.experimentname}&cnt=${experreport.downloadcnt}&username=${experreport.username}">下载实验报告</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -139,22 +139,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 
     <script>
-        <%--function gotoPage() {--%>
-            <%--var str=$("input#page").val();--%>
-            <%--if(str=='')return false;--%>
-            <%--if(str>${pagenum}||str<1){--%>
-                <%--alert("超出页数范围");--%>
-                <%--return false;--%>
-            <%--}--%>
-            <%--window.location.href="<%=basesite%>evaluate/showevaluate?curpage="+str;--%>
-        <%--}--%>
-
-        <%--function gotoAddPage() {--%>
-            <%--window.location.href="<%=basesite%>evaluate/evaluate";--%>
-        <%--}--%>
-        <%--function gotoimportPage() {--%>
-            <%--window.location.href="<%=basesite%>evaluate/import";--%>
-        <%--}--%>
+        function downloadReport() {
+            window.location.href="<%=basesite%>experiment/downloadreport?experimentfile=${experreport.filename}&experimentname=${experreport.experimentname}&cnt=${experreport.downloadcnt}&username=${experreport.username}";
+            window.location.reload();
+        }
     </script>
 
     <!--typo end here-->

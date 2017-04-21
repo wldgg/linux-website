@@ -122,9 +122,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="password" name="password" id="password">
                                             </fieldset>
                                             <input type="submit" id="login" value="登陆">
-                                            <label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>
+                                            <%--<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住密码</i></label>--%>
                                         </fieldset>
-                                        <span><a href="#">忘记密码？</a></span> <span><a href="<%=basesite%>register">没有账户？点击注册</a></span>
+                                        <%--<span><a href="#">忘记密码？</a></span> --%>
+                                        <span><a href="<%=basesite%>register">没有账户？点击注册</a></span>
                                     </form>
                                 </div>
                             </div>
@@ -157,6 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="radio" name="chooseList[${status.count-1}]" value="B">${choose.chooseb}<br>
                     <input type="radio" name="chooseList[${status.count-1}]" value="C">${choose.choosec}<br>
                     <input type="radio" name="chooseList[${status.count-1}]" value="D">${choose.choosed}<br>
+                    <input type="radio" style="display: none" name="chooseList[${status.count-1}]" value="E" checked="checked"><br>
                     <input type="hidden" name="chooseAns[${status.count-1}]" value="${choose.chooseanswer}">
                 </c:forEach>
             </div>
@@ -168,6 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3 id="h3-bootstrap-heading">${status.count}. ${judge.judgebody}</h3>
                     <input type="radio" name="judgeList[${status.count-1}]" value="T">T<br>
                     <input type="radio" name="judgeList[${status.count-1}]" value="F">F<br>
+                    <input type="radio" style="display: none" name="judgeList[${status.count-1}]" value="E" checked="checked"><br>
                     <input type="hidden" name="judgeAns[${status.count-1}]" value="${judge.judgeanswer}">
                 </c:forEach>
             </div>
@@ -201,18 +204,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </form>
     </div>
 </div>
-
-<script>
-    function gotoPage() {
-        var str=$("input#page").val();
-        if(str=='')return false;
-        if(str>${pagenum}||str<1){
-            alert("超出页数范围");
-            return false;
-        }
-        window.location.href="<%=basesite%>evaluate/showevaluate?curpage="+str;
-    }
-</script>
 
 <!--typo end here-->
 <!--footer start here-->

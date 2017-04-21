@@ -1,3 +1,4 @@
+DROP database linux_website;
 create database linux_website;
 
 CREATE TABLE t_users(
@@ -21,7 +22,7 @@ addtime datetime default now()
 CREATE TABLE `t_experiment` (
   `experimentid` int(11) NOT NULL AUTO_INCREMENT,
   `experimentname` varchar(255) NOT NULL DEFAULT '',
-  `experimentbody` varchar(1024) NOT NULL DEFAULT '',
+  `experimentbody` varchar(4096) NOT NULL DEFAULT '',
   `experimentfile` varchar(255) DEFAULT '',
   `starttime` datetime DEFAULT CURRENT_TIMESTAMP,
   `finishtime` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -88,11 +89,22 @@ CREATE TABLE `t_shortanswer` (
 
 CREATE TABLE `t_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `evaluateid` int(11) NULL,
   `evaluatename` varchar(255) NULL,
-  `userid` int(11) DEFAULT '0',
-  `username` varchar(32) DEFAULT '',
+  `username` varchar(32) NULL,
   `score` int(11) DEFAULT '0',
   `addtime` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `evaluate_username` (`evaluatename`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `experiment_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `experimentname` varchar(255) NULL,
+  `username` varchar(32) NULL,
+  `filename` varchar(128) DEFAULT '',
+  `downloadcnt` int(11) DEFAULT '0',
+  `addtime` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `experiment_username` (`experimentname`,`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

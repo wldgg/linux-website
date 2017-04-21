@@ -20,4 +20,8 @@ public interface ScoreDao {
 
     List<Score> selectScoreByUserAndEvaluateName(@Param("username") String username,@Param("evaluatename") String evaluatename);
 
+    void updateScoreByUserAndEvaluateName(@Param("username") String username,@Param("evaluatename") String evaluatename,@Param("score") Integer score);
+
+    void deleteByEvaluatename(@Param("evaluatename") String evaluatename);
+
 }

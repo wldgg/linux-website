@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="<%=basesite%>file/showmaterials?curpage=1">教学资源</a></li>
                     <li><img src="<%=basepath%>/ui/images/lo1.png" alt=""></li>
                     <li><a href="<%=basesite%>experiment/showexperiment?curpage=1">实验 </a></li>
-                    <li><a href="<%=basepath%>/jsp/user/message/message.jsp">留言</a></li>
+                    <%--<li><a href="<%=basepath%>/jsp/user/message/message.jsp">留言</a></li>--%>
                     <li><a href="#">hello <%=request.getSession().getAttribute("username")%></a></li>
                     <li><a href="<%=basesite%>user/quit">退出</a></li>
                 </ul>
@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             alert("没有附件");
             return false;
         }else {
-            window.location.href="<%=basesite%>file/download?fileName=${experiment.experimentfile}&experimentname=${experiment.experimentname}";
+            window.location.href="<%=basesite%>experiment/download?experimentfile=${experiment.experimentfile}";
             return true;
         }
     }
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="about-bottom">
                 <div class="col-md-7 about-left">
-                    <h6><a id="downloadHref" onclick="judgeDownload()">下载本实验附件</a></h6>
+                    <h6><a id="downloadHref" onclick="judgeDownload()">下载实验附件-${experiment.experimentfile}</a></h6>
                     <p>实验开始时间:${experimentstarttime}/${experimentfinishtime}</p>
                     <p>${experiment.experimentbody}</p>
                 </div>
@@ -121,41 +121,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <br>
         <div class="team-mem">
-            <h1>Our Team</h1>
-            <div class="col-md-3 team-grid">
-                <img src="<%=basepath%>/ui/images/t1.jpg"  alt="" class="img-responsive">
-                <ul class="img-social-stags">
-                    <li><a class="twitter" href="#"><span> </span></a><li>
-                    <li><a class="facebook" href="#"><span> </span></a><li>
-                    <div class="clearfix"> </div>
-                </ul>
-            </div>
-            <div class="col-md-3 team-grid">
-                <img src="<%=basepath%>/ui/images/t2.jpg"  alt="" class="img-responsive">
-                <ul class="img-social-stags">
-                    <li><a class="twitter" href="#"><span> </span></a><li>
-                    <li><a class="facebook" href="#"><span> </span></a><li>
-                    <div class="clearfix"> </div>
-                </ul>
-            </div>
-            <div class="col-md-3 team-grid">
-                <img src="<%=basepath%>/ui/images/t3.jpg"  alt="" class="img-responsive">
-                <ul class="img-social-stags">
-                    <li><a class="twitter" href="#"><span> </span></a><li>
-                    <li><a class="facebook" href="#"><span> </span></a><li>
-                    <div class="clearfix"> </div>
-                </ul>
-            </div>
-            <div class="col-md-3 team-grid">
-                <img src="<%=basepath%>/ui/images/t4.jpg"  alt="" class="img-responsive">
-                <ul class="img-social-stags">
-                    <li><a class="twitter" href="#"><span> </span></a><li>
-                    <li><a class="facebook" href="#"><span> </span></a><li>
-                    <div class="clearfix"> </div>
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
+            <center>
+            <%--<h1>Our Team</h1>--%>
+            <form action="<%=basesite%>experiment/upload?experimentname=${experiment.experimentname}" method="post" enctype="multipart/form-data">
+                选择实验报告: <input type="file" name="experimentfile"/><br/>
+                <input type="submit" class="btn btn-lg btn-primary" value="提交实验报告">
+            </form>
+            </center>
         </div>
     </div>
     <div class="advantages">
