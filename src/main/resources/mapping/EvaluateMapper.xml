@@ -6,12 +6,16 @@
         <id column="evaluateid" property="evaluateid" jdbcType="INTEGER"/>
         <result column="evaluatename" property="evaluatename" jdbcType="VARCHAR"/>
         <result column="choosenum" property="choosenum" jdbcType="INTEGER"/>
+        <result column="choosevalue" property="choosevalue" jdbcType="INTEGER"/>
         <result column="chooselist" property="chooselist" jdbcType="VARCHAR"/>
         <result column="vacantnum" property="vacantnum" jdbcType="INTEGER"/>
+        <result column="vacantvalue" property="vacantvalue" jdbcType="INTEGER"/>
         <result column="vacantlist" property="vacantlist" jdbcType="VARCHAR"/>
         <result column="judgenum" property="judgenum" jdbcType="INTEGER"/>
+        <result column="judgevalue" property="judgevalue" jdbcType="INTEGER"/>
         <result column="judgelist" property="judgelist" jdbcType="VARCHAR"/>
         <result column="shortanswernum" property="shortanswernum" jdbcType="INTEGER"/>
+        <result column="shortanswervalue" property="shortanswervalue" jdbcType="INTEGER"/>
         <result column="shortanswerlist" property="shortanswerlist" jdbcType="VARCHAR"/>
         <result column="addtime" property="addtime" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -33,9 +37,8 @@
     </select>
 
     <insert id="addEvaluate" parameterType="com.cam.model.Evaluate">
-        INSERT INTO t_evaluate(evaluatename,choosenum,chooselist,vacantnum,vacantlist,judgenum,judgelist,shortanswernum,shortanswerlist)
-        VALUES (#{evaluate.evaluatename},#{evaluate.choosenum},#{evaluate.chooselist},#{evaluate.vacantnum},#{evaluate.vacantlist},#{evaluate.judgenum},#{evaluate.judgelist}
-        ,#{evaluate.shortanswernum},#{evaluate.shortanswerlist})
+        INSERT INTO t_evaluate(evaluatename,choosenum,chooselist,vacantnum,vacantlist,judgenum,judgelist,shortanswernum,shortanswerlist,choosevalue,judgevalue,vacantvalue,shortanswervalue)
+        VALUES (#{evaluate.evaluatename},#{evaluate.choosenum},#{evaluate.chooselist},#{evaluate.vacantnum},#{evaluate.vacantlist},#{evaluate.judgenum},#{evaluate.judgelist},#{evaluate.shortanswernum},#{evaluate.shortanswerlist},#{evaluate.choosevalue},#{evaluate.judgevalue},#{evaluate.vacantvalue},#{evaluate.shortanswervalue})
     </insert>
 
     <delete id="removeEvaluate">

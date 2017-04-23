@@ -10,14 +10,50 @@ public class Evaluate {
     private int evaluateid;
     private String evaluatename;
     private int choosenum;
+    private int choosevalue;
     private String chooselist;
     private int vacantnum;
+    private int vacantvalue;
     private String vacantlist;
     private int judgenum;
+    private int judgevalue;
     private String judgelist;
     private int shortanswernum;
+    private int shortanswervalue;
     private String shortanswerlist;
     private Date addtime;
+
+    public int getChoosevalue() {
+        return choosevalue;
+    }
+
+    public void setChoosevalue(int choosevalue) {
+        this.choosevalue = choosevalue;
+    }
+
+    public int getVacantvalue() {
+        return vacantvalue;
+    }
+
+    public void setVacantvalue(int vacantvalue) {
+        this.vacantvalue = vacantvalue;
+    }
+
+    public int getJudgevalue() {
+        return judgevalue;
+    }
+
+    public void setJudgevalue(int judgevalue) {
+        this.judgevalue = judgevalue;
+    }
+
+    public int getShortanswervalue() {
+        return shortanswervalue;
+    }
+
+    public void setShortanswervalue(int shortanswervalue) {
+        this.shortanswervalue = shortanswervalue;
+    }
 
     public int getEvaluateid() {
         return evaluateid;

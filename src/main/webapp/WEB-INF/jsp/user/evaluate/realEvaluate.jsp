@@ -149,9 +149,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h2>${evaluate.evaluatename}</h2>
         </div>
         <form method="post" action="<%=basesite%>evaluate/correct?evaluatename=${evaluate.evaluatename}">
-        <c:if test="${fn:length(choose)>0}">
+            <input type="hidden" name="choosevalue" value="${evaluate.choosevalue}">
+            <input type="hidden" name="judgevalue" value="${evaluate.judgevalue}">
+            <input type="hidden" name="vacantvalue" value="${evaluate.vacantvalue}">
+            <input type="hidden" name="shortanswervalue" value="${evaluate.shortanswervalue}">
+            <c:if test="${fn:length(choose)>0}">
             <div class="contact-infom">
-                <h4>选择题:共${fn:length(choose)}道.</h4>
+                <h4>选择题:共${fn:length(choose)}道.每道${evaluate.choosevalue}分</h4>
                 <c:forEach items="${choose}" var="choose" varStatus="status">
                     <h3 id="h3-bootstrap-heading">${status.count}. ${choose.choosebody}</h3>
                     <input type="radio" name="chooseList[${status.count-1}]" value="A">${choose.choosea}<br>
@@ -165,7 +169,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </c:if>
         <c:if test="${fn:length(judge)>0}">
             <div class="contact-infom">
-                <h4>判断题:共${fn:length(judge)}道.</h4>
+                <h4>判断题:共${fn:length(judge)}道.每道${evaluate.judgevalue}分</h4>
                 <c:forEach items="${judge}" var="judge" varStatus="status">
                     <h3 id="h3-bootstrap-heading">${status.count}. ${judge.judgebody}</h3>
                     <input type="radio" name="judgeList[${status.count-1}]" value="T">T<br>
@@ -177,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </c:if>
         <c:if test="${fn:length(vacant)>0}">
             <div class="contact-infom">
-                <h4>填空题:共${fn:length(vacant)}道.</h4>
+                <h4>填空题:共${fn:length(vacant)}道.每道${evaluate.vacantvalue}分</h4>
                 <c:forEach items="${vacant}" var="vacant" varStatus="status">
                     <h3 id="h3-bootstrap-heading">${status.count}. ${vacant.vacantbody}</h3>
                     <%--<input type="text" name="vacantList[${status.count-1}]"><br>--%>
@@ -188,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </c:if>
         <c:if test="${fn:length(shortAnswer)>0}">
             <div class="contact-infom">
-                <h4>简答题:共${fn:length(shortAnswer)}道.</h4>
+                <h4>简答题:共${fn:length(shortAnswer)}道.每道${evaluate.shortanswervalue}分</h4>
                 <c:forEach items="${shortAnswer}" var="shortAnswer" varStatus="status">
                     <h3 id="h3-bootstrap-heading">${status.count}. ${shortAnswer.shortanswerbody}</h3>
                     <%--<input type="text" name="shortAnswerList[${status.count-1}]"><br>--%>
@@ -206,51 +210,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
 <!--typo end here-->
-<!--footer start here-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/location.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/email.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--footer end here-->
-<!--copyright start here-->
-<div class="copyright">
-    <div class="container">
-        <div class="copyright-main">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--copyright end here-->
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

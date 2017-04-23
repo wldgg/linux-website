@@ -99,162 +99,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                     </li>
                 </c:forEach>
-
-                <%--<li>--%>
-                    <%--<center>实验一</center>--%>
-                    <%--<a href="<%=basepath%>/ui/images/g1.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g1.jpg" alt="" class="img-responsive">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验2</center>--%>
-                    <%--<a href="<%=basepath%>/ui/images/g2.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g2.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验3</center>--%>
-                    <%--<a href="<%=basepath%>/ui/images/g3.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g3.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验4</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g4.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g4.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验5</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g5.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g5.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验5</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g6.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g6.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验5</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g7.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g7.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验5</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g8.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g8.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Education</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                    <%--<center>实验5</center>--%>
-
-                    <%--<a href="<%=basepath%>/ui/images/g9.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox">--%>
-                        <%--<img src="<%=basepath%>/ui/images/g9.jpg" alt="">--%>
-                        <%--<div>--%>
-                            <%--<h5>Educatione</h5>--%>
-                            <%--<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>--%>
-                        <%--</div>--%>
-                    <%--</a>--%>
-                <%--</li>--%>
                 <div class="clearfix"> </div>
             </ul>
         </section>
 
         <script type="text/javascript">
             $(function() {
-
                 $(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
-
             });
         </script>
     </div>
 </div>
 <!--gallery-end-->
-<!--footer start here-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/location.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/email.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--footer end here-->
-<!--copyright start here-->
-<div class="copyright">
-    <div class="container">
-        <div class="copyright-main">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--copyright end here-->
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

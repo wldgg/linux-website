@@ -90,13 +90,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--button-->
             <div class="grid_3 grid_4">
                 <div class="page-header">
-                    <h4>上传excel文件批量导入用户，默认为普通用户权限</h4>
+                    <h4>上传excel文件批量导入用户，默认为普通用户权限
+                        <a class="btn btn-sm btn-info" href="<%=basesite%>file/download?materialsname=users.xls">下载模板</a>
+                    </h4>
                 </div>
-
                 <div class="bs-example">
                     <form action="<%=basesite%>user/import" method="post" enctype="multipart/form-data">
                         用户信息Excel文件: <input type="file" name="file"/><br/>
-                        <input type="submit" value="上传">
+                        <input type="submit" class="btn btn-sm btn-info" value="上传">
                     </form>
                     <%--<table class="table">--%>
                         <%--<tbody>--%>
@@ -112,51 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--typo end here-->
-<!--footer start here-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/location.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/email.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--footer end here-->
-<!--copyright start here-->
-<div class="copyright">
-    <div class="container">
-        <div class="copyright-main">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--copyright end here-->
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

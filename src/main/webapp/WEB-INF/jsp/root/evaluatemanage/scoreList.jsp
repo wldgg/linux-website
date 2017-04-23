@@ -37,31 +37,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header1">
     <div class="container">
         <div class="header-main">
-            <!---->
-            <%--<div class="header-logo">--%>
-            <%--<div class="logo">--%>
-            <%--<a href="index.jsp"><img src="images/lo1.png" alt="" ></a>--%>
-            <%--</div>--%>
-            <%--<div class="top-nav">--%>
-            <%--<span class="icon"><img src="images/menu.png" alt=""> </span>--%>
-            <%--<ul>--%>
-            <%--<li ><a href="index.html">Home</a> </li>--%>
-            <%--<li ><a href="about.html" >About  </a> </li>--%>
-            <%--<li><a href="typo.html"  >Short Codes</a></li>--%>
-            <%--<li><a href="galley.html" >Gallery</a></li>--%>
-            <%--<li><a href="contact.html" >Contact </a></li>--%>
-            <%--</ul>--%>
-            <%--<!--script-->--%>
-            <%--<script>--%>
-            <%--$("span.icon").click(function(){--%>
-            <%--$(".top-nav ul").slideToggle(500, function(){--%>
-            <%--});--%>
-            <%--});--%>
-            <%--</script>--%>
-            <%--</div>--%>
-            <%--<div class="clearfix"> </div>--%>
-            <%--</div>--%>
-            <!---->
             <div class="top-menu">
                 <ul>
                     <li ><a href="<%=basesite%>user/showuser?curpage=1">用户管理</a> </li>
@@ -86,22 +61,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3 class="typo1">成绩查看</h3>
             <!--button-->
             <div class="grid_3 grid_4">
-                <%--<div class="page-header">--%>
-                    <%--<form id = "queryForm" action="<%=basesite%>evaluate/showevaluate" method="post">--%>
-                        <%--<input type="hidden" name="curpage" value="1">--%>
-                        <%--实验名：<input type="text" name = "evaluatename" value="">--%>
-                        <%--<input style="background-color: darkgray" class="hvr-bounce-to-right" type="submit" value="查询">--%>
-                        <%--<input onclick="gotoAddPage()" style="background-color: darkgray" class="hvr-bounce-to-right" type="button" value="创建新试卷">--%>
-                        <%--<input onclick="gotoimportPage()" style="background-color: darkgray" class="hvr-bounce-to-right" type="button" value="导入试题">--%>
-                    <%--</form>--%>
-                <%--</div>--%>
                 <div class="bs-example">
                     <table class="table">
                         <thead>
                         <th>试卷名</th>
                         <th>用户名</th>
                         <th>试题完成时间</th>
-                        <%--<th>操作</th>--%>
                         <th>分数</th>
                         </thead>
                         <tbody>
@@ -110,99 +75,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <td><h3 class="h3-bootstrap-heading">${score.evaluatename}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
                                 <td><h3 class="h3-bootstrap-heading">${score.username}<a class="anchorjs-link" href="#h3.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h3></td>
                                 <td class="type-info">${score.addtime}</td>
-                                    <%--<td>--%>
-                                    <%--<c:if test="${user.nIsAdmin == 0}">否</c:if>--%>
-                                    <%--<c:if test="${user.nIsAdmin == 1}">是</c:if>--%>
-                                    <%--</td>--%>
-                                    <%--<td><a href="update.action?id=${material.materialsname}">修改</a>|<a href="delete.action?id=${material.materialsname}">删除</a></td>--%>
                                 <td><a class="hvr-bounce-to-right">${score.score}</a></td>
                                 <td><a class="hvr-bounce-to-right" href="<%=basesite%>evaluate/downloadanswer?evaluatename=${score.evaluatename}&username=${score.username}">下载该用户答案</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
-                    <%--<div style="text-align: center">--%>
-                        <%--<p>--%>
-                            <%--<a class="type-info" href="<%=basesite%>evaluate/showevaluate?curpage=1">首页</a>--%>
-                            <%--<a class="type-info" href="<%=basesite%>evaluate/showevaluate?curpage=${curpage-1 eq 0?1:curpage-1}">上一页</a>--%>
-                            <%--<a class="type-info" href="<%=basesite%>evaluate/showevaluate?curpage=${curpage eq pagenum?pagenum:curpage+1}">下一页</a>--%>
-                            <%--<a class="type-info" href="<%=basesite%>evaluate/showevaluate?curpage=${pagenum}">末页</a>--%>
-                        <%--</p>--%>
-                        <%--<p>当前第${curpage}页/共${pagenum}页,一共有${counts}条记录, 每页 ${pagesize} 条</p>--%>
-                        <%--跳转到第<input type="number" id = "page" size="2">页--%>
-                        <%--<a class="hvr-bounce-to-right" onclick="gotoPage()" >跳转</a>--%>
-                        <%--&lt;%&ndash;<input type="button" class="hvr-bounce-to-right" onclick="gotoPage()" value="跳转">&ndash;%&gt;--%>
-                    <%--</div>--%>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        <%--function gotoPage() {--%>
-            <%--var str=$("input#page").val();--%>
-            <%--if(str=='')return false;--%>
-            <%--if(str>${pagenum}||str<1){--%>
-                <%--alert("超出页数范围");--%>
-                <%--return false;--%>
-            <%--}--%>
-            <%--window.location.href="<%=basesite%>evaluate/showevaluate?curpage="+str;--%>
-        <%--}--%>
-
-        <%--function gotoAddPage() {--%>
-            <%--window.location.href="<%=basesite%>evaluate/evaluate";--%>
-        <%--}--%>
-        <%--function gotoimportPage() {--%>
-            <%--window.location.href="<%=basesite%>evaluate/import";--%>
-        <%--}--%>
-    </script>
 
     <!--typo end here-->
-    <!--footer start here-->
-    <div class="footer">
-        <div class="container">
-            <div class="footer-main">
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/location.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/email.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--footer end here-->
-    <!--copyright start here-->
-    <div class="copyright">
-        <div class="container">
-            <div class="copyright-main">
-                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--copyright end here-->
+    <%@include file="../../footer.jsp"%>
 </body>
 </html>

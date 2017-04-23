@@ -29,32 +29,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="header-main">
-            <!---->
-            <%--<div class="header-logo">--%>
-            <%--<div class="logo">--%>
-            <%--<a href="index.html"><img src="<%=basepath%>/ui/images/lo1.png" alt="" ></a>--%>
-            <%--</div>--%>
-            <%--<div class="top-nav">--%>
-            <%--<span class="icon"><img src="<%=basepath%>/ui/images/menu.png" alt=""> </span>--%>
-            <%--<ul>--%>
-            <%--<li ><a href="index.html">1111111</a> </li>--%>
-            <%--<li ><a href="about.html" >About  </a> </li>--%>
-            <%--<li><a href="typo.html"  >Short Codes</a></li>--%>
-            <%--<li><a href="galley.html" >Gallery</a></li>--%>
-            <%--<li><a href="contact.html" >Contact </a></li>--%>
-            <%--</ul>--%>
-            <%--<!--script-->--%>
-            <%--<script>--%>
-            <%--$("span.icon").click(function(){--%>
-            <%--$(".top-nav ul").slideToggle(500, function(){--%>
-            <%--});--%>
-            <%--});--%>
-            <%--</script>--%>
-            <%--</div>--%>
-            <%--<div class="clearfix"> </div>--%>
-            <%--</div>--%>
-            <!---->
-
             <script>
                 $(document).ready(function () {
                     $("input#login").click(function () {
@@ -127,21 +101,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </ul>
             </div>
             <!--script-->
+
             <div class="bann-bottom">
-                <h1>欢迎来到Linux教学网站</h1>
-                <p>全军出击</p>
+                <h1>欢迎来到《Linux操作系统》教学网站</h1>
+                <%--<p>全军出击</p>--%>
                 <div class="bann-main">
-                    <div class="col-md-4 bann-grid">
+                    <div class="col-md-4 bann-grid" onclick="SetHome(this,location.href);">
                         <img src="<%=basepath%>/ui/images/i1.png" alt="">
-                        <h4>Porro Neque</h4>
+                        <h4><a >设为首页</a></h4>
                     </div>
-                    <div class="col-md-4 bann-grid">
+                    <div class="col-md-4 bann-grid"onclick="AddFavorite('我的网站',location.href)">
                         <img src="<%=basepath%>/ui/images/i2.png" alt="">
-                        <h4>Porro Neque</h4>
+                        <h4><a >收藏本站</a></h4>
                     </div>
                     <div class="col-md-4 bann-grid">
                         <img src="<%=basepath%>/ui/images/i3.png" alt="">
-                        <h4>Porro Neque</h4>
+                        <h4>点赞</h4>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -150,22 +125,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--header end here-->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+<%--<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>--%>
 <!--baner-info start here-->
 <div class="banner-info">
     <div class="container">
         <div class="banner-info-main">
             <div class="col-md-6 bann-info-left">
                 <img src="<%=basepath%>/ui/images/2.jpg" alt="" class="img-responsive">
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur</p>
+                <p>Linux是一套免费使用和自由传播的类Unix操作系统，是一个基于POSIX和UNIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的UNIX工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
             </div>
             <div class="col-md-6 bann-info-left">
                 <img src="<%=basepath%>/ui/images/balance.jpg" alt="" class="img-responsive">
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur</p>
+                <p>Linux操作系统诞生于1991 年10 月5 日（这是第一次正式向外公布时间）。Linux存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、视频游戏控制台、台式计算机、大型机和超级计算机。</p>
             </div>
             <div class="clearfix"> </div>
         </div>
-        <div class="bann-info-btn"><a href="single.html" class="hvr-bounce-to-right">Read More</a></div>
+        <div class="bann-info-btn"><a href="<%=basesite%>file/showmaterials?curpage=1" class="hvr-bounce-to-right">更多知识请点击</a></div>
     </div>
 </div>
 <!--banner-info end here-->
@@ -173,21 +148,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="testimonal">
     <div class="container">
         <div class="testimonal-main">
-            <h2>Nor again anyone who loves  pursues desires</h2>
-            <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids</p>
-            <a href="single.html" class="hvr-bounce-to-right  testimo-btn">Read More</a>
+            <h2>Linux的组成</h2>
+            <p>内核：是系统的心脏，是运行程序和管理像磁盘和打印机等硬件设备的核心程序。
+                Shell：是系统的用户界面，提供了用户和内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行，是一个命令解释器。但它不仅使命令解释器，而且还是高级编程语言，shell编程。
+                文件系统：文件系统是文件存放在磁盘等存储设备上的组织方法，Linux支持多种文件系统，如ext3,ext2,NFS,SMB,iso9660等
+                应用程序：标准的Linux操作系统都会有一套应用程序例如X-Window,Open Office等</p>
+            <a href="<%=basesite%>experiment/showexperiment?curpage=1" class="hvr-bounce-to-right  testimo-btn">通过实验了解更多</a>
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 <!--testimonal end here-->
 <!--we work strat her-->
+
 <div class="we-work">
     <div class="container">
         <div class="we-work-main">
             <div class="we-work-top">
-                <h3>How We Work</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                <h3>在线练习</h3>
+                <p>简述Linux系统有什么显著特点或特性。</p>
             </div>
             <div class="we-work-bottom">
                 <div class="col-md-6 we-work-left">
@@ -200,94 +179,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"> </div>
                 </div>
                 <div class="col-md-6 we-work-right">
-                    <p> Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                    <p> （1）与UNIX兼容（2）自由软件，源码公开（3）性能高，安全性强（4）便于定制和再开发（5）互操作性高。或（1）开放性（2）多用户（3）多任务（4）良好的用户界面（5）设备独立性（6）提供了丰富的网络功能（7）可靠的系统安全（8）良好的可移植性 </p>
                 </div>
                 <div class="clearfix"> </div>
             </div>
+        </div>
+        <div class="bann-info-btn">
+            <a href="<%=basesite%>evaluate/showevaluate?curpage=1" class="hvr-bounce-to-right">看看练习题</a>
         </div>
     </div>
 </div>
 <!--we work end here-->
 <!--feature start here-->
-<div class="features">
-    <div class="container">
-        <div class="features-main">
-            <div class="features-top">
-                <h3>Features</h3>
-                <p> </p>
-            </div>
-            <div class="features-bottom">
-                <div class="col-md-3 feature-grid">
-                    <img src="<%=basepath%>/ui/images/f1.jpg" alt="" class="img-responsive">
-                    <h4>voluptatem accusantium</h4>
-                    <p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="<%=basepath%>/ui/images/f2.jpg" alt="" class="img-responsive">
-                    <h4>voluptatem accusantium</h4>
-                    <p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="<%=basepath%>/ui/images/f3.jpg" alt="" class="img-responsive">
-                    <h4>voluptatem accusantium</h4>
-                    <p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="<%=basepath%>/ui/images/f4.jpg" alt="" class="img-responsive">
-                    <h4>voluptatem accusantium</h4>
-                    <p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="features">--%>
+    <%--<div class="container">--%>
+        <%--<div class="features-main">--%>
+            <%--<div class="features-top">--%>
+                <%--<h3>Features</h3>--%>
+                <%--<p> </p>--%>
+            <%--</div>--%>
+            <%--<div class="features-bottom">--%>
+                <%--<div class="col-md-3 feature-grid">--%>
+                    <%--<img src="<%=basepath%>/ui/images/f1.jpg" alt="" class="img-responsive">--%>
+                    <%--<h4>voluptatem accusantium</h4>--%>
+                    <%--<p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-3 feature-grid">--%>
+                    <%--<img src="<%=basepath%>/ui/images/f2.jpg" alt="" class="img-responsive">--%>
+                    <%--<h4>voluptatem accusantium</h4>--%>
+                    <%--<p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-3 feature-grid">--%>
+                    <%--<img src="<%=basepath%>/ui/images/f3.jpg" alt="" class="img-responsive">--%>
+                    <%--<h4>voluptatem accusantium</h4>--%>
+                    <%--<p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-3 feature-grid">--%>
+                    <%--<img src="<%=basepath%>/ui/images/f4.jpg" alt="" class="img-responsive">--%>
+                    <%--<h4>voluptatem accusantium</h4>--%>
+                    <%--<p>quae ab illo inventore veritatis et quasi architecto beatae vitae</p>--%>
+                <%--</div>--%>
+                <%--<div class="clearfix"> </div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
+<script type="text/JavaScript">
+    function SetHome(obj,url){
+        try{
+            obj.style.behavior='url(#default#homepage)';
+            obj.setHomePage(url);
+        }catch(e){
+            if(window.netscape){
+                try{
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                }catch(e){
+                    alert("抱歉，此操作被浏览器拒绝！\n\n请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'");
+                }
+            }else{
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n您需要手动将【"+url+"】设置为首页。");
+            }
+        }
+    }
+
+    //收藏本站
+    function AddFavorite(title, url) {
+        try {
+            window.external.addFavorite(url, title);
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            }
+            catch (e) {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+</script>
+
 <!--services end here-->
-<!--footer start here-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/location.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/email.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--footer end here-->
-<!--copyright start here-->
-<div class="copyright">
-    <div class="container">
-        <div class="copyright-main">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--copyright end here-->
+<%@include file="WEB-INF/jsp/footer.jsp"%>
 </body>
 </html>

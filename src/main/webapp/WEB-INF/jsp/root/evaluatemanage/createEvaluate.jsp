@@ -77,42 +77,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h2>新试卷</h2>
             <p>请填写试卷的名称,内容(每种题型需要的题数,系统将从后台随机取题组成)</p>
         </div>
-        <%--<div class="contact-infom">--%>
-        <%--<h4>CONTACT INFO</h4>--%>
-        <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sheets containing Lorem Ipsum passages,--%>
-        <%--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.It was popularised in the 1960s with the release of Letraset--%>
-        <%--and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>--%>
-        <%--</div>--%>
         <div class="contact-form">
-            <%--<form>--%>
-            <%--<input type="text" placeholder="Name">--%>
-            <%--<input type="text"  class="email" placeholder="email">--%>
-            <%--<input type="text" placeholder="Telephone">--%>
-            <%--<textarea placeholder="Message" required=""></textarea>--%>
-            <%--<input type="submit" value="Submit" >--%>
-            <%--</form>--%>
-
-
             <form action="<%=basesite%>evaluate/create" method="post">
                 <span style="color: red">*</span>本套试题名称：
                 <br>
                 <input type="text" id="evaluatename" name="evaluatename" placeholder="evaluatename">
                 <br>
-                选择题数目：
+                选择题数目/每题分值：
                 <br>
                 <input type="number" id="choosenum" name="choosenum" placeholder="Message" value="0">
+                <input type="number" id="choosevalue" name="choosevalue" placeholder="Message" value="0">
                 <br>
-                填空题数目：
+                填空题数目/每题分值：
                 <br>
                 <input type="number" id="vacantnum" name="vacantnum" placeholder="Message" value="0">
+                <input type="number" id="vacantvalue" name="vacantvalue" placeholder="Message" value="0">
                 <br>
-                判断题数目：
+                判断题数目/每题分值：
                 <br>
                 <input type="number" id="judgenum" name="judgenum" placeholder="Message" value="0">
+                <input type="number" id="judgevalue" name="judgevalue" placeholder="Message" value="0">
                 <br>
-                简答题数目：
+                简答题数目/每题分值：
                 <br>
                 <input type="number" id="shortanswernum" name="shortanswernum" placeholder="Message" value="0">
+                <input type="number" id="shortanswervalue" name="shortanswervalue" placeholder="Message" value="0">
                 <br>
                 <input type="submit" id="submitInfo" value="提交" >
             </form>
@@ -121,52 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--contact end here-->
-<!--footer start here-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-main">
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/location.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/email.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="col-md-4 ftr-grid">
-                <div class="ftr-grid-left">
-                    <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                </div>
-                <div class="ftr-grid-right">
-                    <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--footer end here-->
-<!--copyright start here-->
-<div class="copyright">
-    <div class="container">
-        <div class="copyright-main">
-            <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!--copyright end here-->
+<%@include file="../../footer.jsp"%>
 </body>
 </html>
 

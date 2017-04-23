@@ -67,7 +67,9 @@ public class EvaluateController {
                     ||shortAnswerList.size()!=shortAnswerAns.size()){
                 return "/error";
             }
-            int score=matchAnswer(chooseList,chooseAns)+matchAnswer(judgeList,judgeAns)+matchAnswer(vacantList,vacantAns)*2;
+            int score=matchAnswer(chooseList,chooseAns)*answerList.getChoosevalue()
+                    +matchAnswer(judgeList,judgeAns)*answerList.getJudgevalue()
+                    +matchAnswer(vacantList,vacantAns)*answerList.getVacantvalue();
             Score scorem=new Score();
             scorem.setEvaluatename(evaluatename);
             String username= (String) request.getSession().getAttribute("username");
@@ -171,7 +173,9 @@ public class EvaluateController {
 
     @RequestMapping("/create")
     public String createEvaluate(HttpServletRequest request,Model model, @RequestParam String evaluatename,@RequestParam Integer choosenum,
-                                 @RequestParam Integer vacantnum,@RequestParam Integer judgenum,@RequestParam Integer shortanswernum) throws IOException, ParseException {
+                                 @RequestParam Integer vacantnum,@RequestParam Integer judgenum,@RequestParam Integer shortanswernum,
+                                 @RequestParam Integer choosevalue,@RequestParam Integer vacantvalue,@RequestParam Integer judgevalue,
+                                 @RequestParam Integer shortanswervalue) throws IOException, ParseException {
         try {
             int choosesize=chooseService.getCounts();
             if(choosesize<choosenum)choosenum=choosesize;
@@ -190,12 +194,16 @@ public class EvaluateController {
             Evaluate evaluate=new Evaluate();
             evaluate.setEvaluatename(evaluatename);
             evaluate.setChoosenum(choosenum);
+            evaluate.setChoosevalue(choosevalue);
             evaluate.setChooselist(chooselist);
             evaluate.setVacantnum(vacantnum);
+            evaluate.setVacantvalue(vacantvalue);
             evaluate.setVacantlist(vacantlist);
             evaluate.setJudgenum(judgenum);
+            evaluate.setJudgevalue(judgevalue);
             evaluate.setJudgelist(judgelist);
             evaluate.setShortanswernum(shortanswernum);
+            evaluate.setShortanswervalue(shortanswervalue);
             evaluate.setShortanswerlist(shortanswerlist);
             evaluateService.addEvaluate(evaluate);
             return showEvaluate(request,model,1,"");

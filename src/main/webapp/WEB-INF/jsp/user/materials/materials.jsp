@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <form id = "queryForm" action="<%=basesite%>file/showmaterials" method="post">
                         <input type="hidden" name="curpage" value="1">
                         资源名：<input type="text" name = "materialsname" value="">
-                        <input style="background-color: darkgray" class="hvr-bounce-to-right" type="submit" value="查询">
+                        <input class="btn btn-1 btn-primary" type="submit" value="查询">
                     </form>
                 </div>
 
@@ -148,51 +148,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 
     <!--typo end here-->
-    <!--footer start here-->
-    <div class="footer">
-        <div class="container">
-            <div class="footer-main">
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/location.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/email.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--footer end here-->
-    <!--copyright start here-->
-    <div class="copyright">
-        <div class="container">
-            <div class="copyright-main">
-                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--copyright end here-->
+    <%@include file="../../footer.jsp"%>
 </body>
 </html>

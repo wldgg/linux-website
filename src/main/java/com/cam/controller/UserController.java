@@ -76,14 +76,14 @@ public class UserController {
                         try {
                             userService.addUser(user);
                         }catch (Exception e){
-                            erruser.add(user);
+//                            erruser.add(user);
                         }
                     }
-                    Iterator it=erruser.iterator();
-                    while (it.hasNext()){
-                        log.info(it.next().toString());
-                        System.out.println(it.next().toString());
-                    }
+//                    Iterator it=erruser.iterator();
+//                    while (it.hasNext()){
+//                        log.info(it.next().toString());
+//                        System.out.println(it.next().toString());
+//                    }
                 }
             }
             return "/root/usermanage/importUser";

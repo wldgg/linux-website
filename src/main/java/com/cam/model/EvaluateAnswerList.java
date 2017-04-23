@@ -7,6 +7,10 @@ import java.util.List;
  */
 public class EvaluateAnswerList {
 
+    private Integer choosevalue;
+    private Integer judgevalue;
+    private Integer vacantvalue;
+    private Integer shortanswervalue;
     private List<String> chooseList;
     private List<String> chooseAns;
     private List<String> judgeList;
@@ -15,6 +19,38 @@ public class EvaluateAnswerList {
     private List<String> vacantAns;
     private List<String> shortAnswerList;
     private List<String> shortAnswerAns;
+
+    public Integer getChoosevalue() {
+        return choosevalue;
+    }
+
+    public void setChoosevalue(Integer choosevalue) {
+        this.choosevalue = choosevalue;
+    }
+
+    public Integer getJudgevalue() {
+        return judgevalue;
+    }
+
+    public void setJudgevalue(Integer judgevalue) {
+        this.judgevalue = judgevalue;
+    }
+
+    public Integer getVacantvalue() {
+        return vacantvalue;
+    }
+
+    public void setVacantvalue(Integer vacantvalue) {
+        this.vacantvalue = vacantvalue;
+    }
+
+    public Integer getShortanswervalue() {
+        return shortanswervalue;
+    }
+
+    public void setShortanswervalue(Integer shortanswervalue) {
+        this.shortanswervalue = shortanswervalue;
+    }
 
     public List<String> getJudgeAns() {
         return judgeAns;

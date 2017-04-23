@@ -33,37 +33,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //end-smoth-scrolling -->
 </head>
 <body>
-
 <!--header start here-->
 <div class="header1">
     <div class="container">
         <div class="header-main">
-            <!---->
-            <%--<div class="header-logo">--%>
-            <%--<div class="logo">--%>
-            <%--<a href="index.jsp"><img src="images/lo1.png" alt="" ></a>--%>
-            <%--</div>--%>
-            <%--<div class="top-nav">--%>
-            <%--<span class="icon"><img src="images/menu.png" alt=""> </span>--%>
-            <%--<ul>--%>
-            <%--<li ><a href="index.html">Home</a> </li>--%>
-            <%--<li ><a href="about.html" >About  </a> </li>--%>
-            <%--<li><a href="typo.html"  >Short Codes</a></li>--%>
-            <%--<li><a href="galley.html" >Gallery</a></li>--%>
-            <%--<li><a href="contact.html" >Contact </a></li>--%>
-            <%--</ul>--%>
-            <%--<!--script-->--%>
-            <%--<script>--%>
-            <%--$("span.icon").click(function(){--%>
-            <%--$(".top-nav ul").slideToggle(500, function(){--%>
-            <%--});--%>
-            <%--});--%>
-            <%--</script>--%>
-            <%--</div>--%>
-            <%--<div class="clearfix"> </div>--%>
-            <%--</div>--%>
-            <!---->
-
             <script>
                 $(document).ready(function () {
                     $("input#login").click(function () {
@@ -86,7 +59,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     });
                 })
             </script>
-
             <div class="top-menu">
                 <ul>
                     <li ><a href="<%=basepath%>/index.jsp" >首页</a> </li>
@@ -140,7 +112,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--header end here-->
 <!--typo start here-->
-
 <div class="typrography">
     <div class="container">
         <div class="page">
@@ -151,12 +122,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <form id = "queryForm" action="<%=basesite%>evaluate/showevaluate" method="post">
                         <input type="hidden" name="curpage" value="1">
                         试卷名：<input type="text" name = "evaluatename" value="">
-                        <input style="background-color: darkgray" class="hvr-bounce-to-right" type="submit" value="查询">
+                        <input class="btn btn-1 btn-primary" type="submit" value="查询">
                     </form>
                 </div>
                 <div class="bs-example">
                     <table class="table">
-
                         <thead>
                         <th>试卷名</th>
                         <th>试卷创建时间</th>
@@ -194,7 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
-
     <script>
         function gotoPage() {
             var str=$("input#page").val();
@@ -206,53 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.location.href="<%=basesite%>evaluate/showevaluate?curpage="+str;
         }
     </script>
-
     <!--typo end here-->
-    <!--footer start here-->
-    <div class="footer">
-        <div class="container">
-            <div class="footer-main">
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/location.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>7556 gt globel Place <span class="local">CD-road,M 07 435.</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/email.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p><a href="#">mail@user.com</a><span class="local">saepe eveniet</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-4 ftr-grid">
-                    <div class="ftr-grid-left">
-                        <img src="<%=basepath%>/ui/images/phone.png" alt="">
-                    </div>
-                    <div class="ftr-grid-right">
-                        <p>+1234 567 9871 <span class="local">+1204 859 6598</span></p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--footer end here-->
-    <!--copyright start here-->
-    <div class="copyright">
-        <div class="container">
-            <div class="copyright-main">
-                <p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!--copyright end here-->
+    <%@include file="../../footer.jsp"%>
 </body>
 </html>
